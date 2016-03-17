@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="PresentationTrainer.EvidenceItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+         Height="372" Width="1000">
+    <Grid Background="Transparent">
+        <Image Name="EvidenceImg1" HorizontalAlignment="Left" Height="362" Margin="143,0,0,0" VerticalAlignment="Top" Width="350"/>
+        <Image Name="EvidenceImg2" HorizontalAlignment="Left" Height="362" Margin="549,0,0,0" VerticalAlignment="Top" Width="350"/>
+        <Label Name="EvidenceLabel1" Content="Time 0" FontSize="18" HorizontalAlignment="Left" Margin="58,278,0,0" VerticalAlignment="Top" Height="42" Width="64" Visibility="Collapsed" />
+        <Label Name="EvidenceLabel2" Content="Time " FontSize="18" HorizontalAlignment="Left" Margin="439,278,0,0" VerticalAlignment="Top" Height="42" Width="134" Visibility="Collapsed"/>
+        <Image Name="EvidenceImg3" HorizontalAlignment="Left" Height="352" Margin="251,10,0,0" VerticalAlignment="Top" Width="498"/>
+
+    </Grid>
+</UserControl>

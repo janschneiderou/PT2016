@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="PresentationTrainer.ReportControl"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2014"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1300" Background="White" >
+    <k:KinectRegion x:Name="kinectRegion" Background="White">
+        <Grid>
+            <Grid x:Name="OutroGrid" HorizontalAlignment="Left" Height="764" VerticalAlignment="Top" Width="1300" Background="#1B9ED2" Margin="0,0,0,-64" >
+
+
+                <Button Name="GoMainMenu"  Background="Transparent" HorizontalAlignment="Right" Margin="0,542,58,0" VerticalAlignment="Top" Width="126" Height="101" >
+                    <Image Source="Images/exercises-yellow.png" />
+                </Button>
+
+                <Label Content="Finish Presentation" HorizontalAlignment="Right" Height="43" Margin="0,648,42,0" VerticalAlignment="Top" Width="186" Foreground="White" FontSize="20" RenderTransformOrigin="0.607,0.5"/>
+
+                <Button Name="GoTimeLine"  Background="Transparent" HorizontalAlignment="Center" Margin="500,542,0,0" VerticalAlignment="Top" Width="127" Height="101" Click="GoTimeLine_Click">
+                    <Image Source="Images/exercises-yellow.png" />
+                </Button>
+                <Label Content="TimeLine" HorizontalAlignment="Center" Height="43" Margin="828,647,344,0" VerticalAlignment="Top" Width="128" Foreground="White" FontSize="20" RenderTransformOrigin="0.607,0.5"/>
+
+                <Grid Name="reportGrid" Visibility="Visible">
+
+
+                    <Label Content="Report" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,170,0,0" VerticalAlignment="Top" Width="912" Height="48"/>
+                    <Label Name="PTime" Content="Presentation Time:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,200,0,0" VerticalAlignment="Top" Width="912" Height="48"/>
+                    <Label Name="Posture" Content="Posture Mistakes:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,230,0,0" VerticalAlignment="Top" Width="1222" Height="76"/>
+                    <Label Name="Volume" Content="Volume Mistakes:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,300,0,0" VerticalAlignment="Top" Width="1222" Height="76"/>
+                    <Label Name="Gesture" Content="Gesture Mistakes:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,370,0,0" VerticalAlignment="Top" Width="912" Height="48"/>
+                    <Label Name="Cadence" Content="Cadence Mistakes:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,400,0,0" VerticalAlignment="Top" Width="912" Height="48"/>
+                    <Label Name="PPauses" Content="Hmmm Mistakes:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,430,0,0" VerticalAlignment="Top" Width="912" Height="48"/>
+                    <Label Name="Dancing" Content="Dancing Mistakes:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,460,0,0" VerticalAlignment="Top" Width="912" Height="48"/>
+                    <Label Name="BlankFace" Content="Blank Face Mistakes:" HorizontalAlignment="Left" Foreground="White" FontSize="25" Margin="44,490,0,0" VerticalAlignment="Top" Width="912" Height="48"/>
+                </Grid>
+            </Grid>
+
+
+
+            <Image HorizontalAlignment="Center" Height="100" Margin="0,51,0,0" Source="Images/hand-yellow.png" VerticalAlignment="Top" Width="100" />
+
+            <ScrollViewer Name="scrollViewer" Grid.Row="0"  Visibility="Collapsed" Width="800" HorizontalAlignment="Left" Margin="0,0,0,0"
+                          Height="750" 
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      k:KinectRegion.IsHorizontalRailEnabled="true" k:KinectRegion.IsVerticalRailEnabled="true"
+                      k:KinectRegion.ZoomMode="Enabled" Background="Transparent">
+                <Canvas  Name="backCanvas" Background="LightBlue" Height="750" Width="700">
+                    <Canvas Width="750" Name="ScrollCanvas" Canvas.Top="25" Height="700">
+                        <Line Stroke="Black" X1="0" Y1="25" X2="600" Y2="25"  />
+                        <Rectangle Name="PostureRect" Width="700" Height="100" Canvas.Top="0" Fill="LightGray"></Rectangle>
+                        <Label Content="Posture" Canvas.Left="10" Canvas.Top="20" FontSize="28"/>
+                        <Rectangle Name="GestureRect" Width="700" Height="100" Canvas.Top="100" Fill="LightBlue"></Rectangle>
+                        <Label Content="Gesture" Canvas.Left="10" Canvas.Top="120" FontSize="28"/>
+                        <Rectangle Name="VolumeRect" Width="700" Height="100" Canvas.Top="200" Fill="LightGoldenrodYellow"></Rectangle>
+                        <Label Content="Volume" Canvas.Left="10" Canvas.Top="220" FontSize="28"/>
+                        <Rectangle Name="CadenceRect" Width="700" Height="100" Canvas.Top="300" Fill="LightGray"></Rectangle>
+                        <Label Content="Cadence" Canvas.Left="10" Canvas.Top="320" FontSize="28"/>
+                        <Rectangle Name="PhoneticRect" Width="700" Height="100" Canvas.Top="400" Fill="LightBlue"></Rectangle>
+                        <Label Content="Phonetic Pauses" Canvas.Left="10" Canvas.Top="420" FontSize="28"/>
+                        <Rectangle Name="DancingRect" Width="700" Height="100" Canvas.Top="500" Fill="LightGoldenrodYellow"></Rectangle>
+                        <Label Content="Dancing" Canvas.Left="10" Canvas.Top="520" FontSize="28"/>
+                        <Rectangle Name="BlankFaceRect" Width="700" Height="100" Canvas.Top="600" Fill="LightBlue"></Rectangle>
+                        <Label Content="Blank Face" Canvas.Left="10" Canvas.Top="620" FontSize="28"/>
+                    </Canvas>
+                </Canvas>
+
+            </ScrollViewer>
+
+            <!--  <PresentationTrainer:EvidenceItem x:Name="evidence"  Background="LightCyan" Height="320" Width="640" Margin="360,0,0,0" /> -->
+        </Grid>
+    </k:KinectRegion>
+</UserControl>

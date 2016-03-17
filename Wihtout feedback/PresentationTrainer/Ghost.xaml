@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="PresentationTrainer.Ghost"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="300">
+    <Grid>
+        <Image Name="ghostImg"   Height="650" Visibility="Visible" Source="Images/ghost_outline.png"/>
+        <Ellipse Name="hunch" Fill="Red" HorizontalAlignment="Left" Height="64" Margin="96,103,0,0" Stroke="Red" VerticalAlignment="Top" Width="109" Opacity="0.3" Visibility="Collapsed" />
+        <Ellipse Name="back" Fill="Red" HorizontalAlignment="Left" Height="149" Margin="116,199,0,0" Stroke="Red" VerticalAlignment="Top" Width="67" Opacity="0.3" Visibility="Collapsed"  />
+        <Ellipse Name="rightHand" Fill="Red" HorizontalAlignment="Left" Height="74" Margin="205,324,0,0" Stroke="Red" VerticalAlignment="Top" Width="47" Opacity="0.3"  Visibility="Collapsed" />
+        <Ellipse Name="leftHand" Fill="Red" HorizontalAlignment="Left" Height="74" Margin="42,324,0,0" Stroke="Red" VerticalAlignment="Top" Width="47" Opacity="0.3" Visibility="Collapsed"  />
+        <Label Name="CurrentFeedback" Content="HELLO"  FontSize="36" Foreground="White" Background="#FFB400" Margin="0,403,10,191" />
+        <Ellipse x:Name="rightArm" Fill="Red" HorizontalAlignment="Left" Height="74" Margin="227,221,0,0" Stroke="Red" VerticalAlignment="Top" Width="47" Opacity="0.3"  Visibility="Collapsed" />
+        <Ellipse x:Name="leftArm" Fill="Red" HorizontalAlignment="Left" Height="74" Margin="25,221,0,0" Stroke="Red" VerticalAlignment="Top" Width="47" Opacity="0.3"  Visibility="Collapsed" />
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,9 @@
+﻿<Window x:Class="PresentationTrainer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="900" Width="1400" Loaded="Window_Loaded" 
+          Closing="MainWindow_Closing" Background="#0099CC" WindowState="Maximized">
+    <Canvas Name="MainCanvas">
+        
+    </Canvas>
+</Window>

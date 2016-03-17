@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="PresentationTrainer.IndividualInstructions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900">
+    <Grid>
+        <Rectangle Fill="#11111199" HorizontalAlignment="Left" Height="451" Margin="10,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="780"/>
+
+        <Label Name="instruction1Label" Background="White" Foreground="DarkGray"  Content="1.- Take a Breath" HorizontalAlignment="Center" Margin="19,100,124,0" VerticalAlignment="Top" Height="72" Width="757" FontSize="38" Visibility="Visible"/>
+        <Label Name="instructionLabel2" Background="White" Foreground="DarkGray" Content="2.- Think of what to say" HorizontalAlignment="Left" Margin="19,184,0,0" VerticalAlignment="Top" Height="69" Width="757" FontSize="38" Visibility="Collapsed"/>
+        <Label Name="instructionLabel3" Background="White" Foreground="DarkGray" Content="3.- " HorizontalAlignment="Left" Margin="19,264,0,0" VerticalAlignment="Top" Height="69" Width="757" FontSize="38" Visibility="Collapsed"/>
+        <Label Name="instructionLabel4" Content="4.- Start Speaking" Background="White" Foreground="DarkOrange" HorizontalAlignment="Left" Margin="19,350,0,0" VerticalAlignment="Top" Height="84" Width="757" FontSize="55" Visibility="Collapsed"/>
+
+        <Label Name="stopLabel" Content="STOP" Foreground="White" Background="Red" HorizontalAlignment="Left" Height="257" Margin="157,129,0,114" VerticalAlignment="Center" Width="424" FontSize="150" Visibility="Collapsed" />
+
+
+    </Grid>
+</UserControl>

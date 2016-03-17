@@ -1,0 +1,41 @@
+﻿<UserControl xmlns:PresentationTrainer="clr-namespace:PresentationTrainer"  x:Class="PresentationTrainer.FreestyleMode"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+               >
+    <Canvas  Name="myCanvas">
+        <MediaElement Name="coinSound" Source="Sounds\smw_coin.wav" LoadedBehavior="Manual"/>
+        <Image Source="Images\background_blue.jpg" Name="backgroundImg" Canvas.Left="0" Canvas.Top="0"/>
+        <Grid Canvas.Left="0" Canvas.Top="-100">
+            <Viewbox Grid.Row="0" HorizontalAlignment="Center" >
+                <Canvas Name="CompositeImage" MinHeight="1000" MinWidth="1000" >
+                    <!--  <Image Source="Images\Background.jpg"  Width="1000" Height="1000"/> -->
+                    <PresentationTrainer:BodyMirror x:Name="myBody" />
+                    <PresentationTrainer:AudioMirror Height="100" Canvas.Left="1100" Canvas.Top="650" Width="100" x:Name="myAudio" />
+                    <PresentationTrainer:SkeletonTraker  x:Name="mySkeleton"   Height="1000" Width="1000"/>
+
+                    <PresentationTrainer:Ghost  x:Name="ghost" Canvas.Left="1030" Canvas.Top="180"   Height="650" Visibility="Collapsed" />
+                    <Image Name="ghostMoving1" Canvas.Left="1030" Canvas.Top="180"   Height="650" Visibility="Collapsed" Source="Images/ghost_outline.png"/>
+                    <PresentationTrainer:GhostMoving x:Name="ghostMoving"  Canvas.Left="1030" Canvas.Top="180"   Height="650" Visibility="Collapsed"/>
+                    <PresentationTrainer:CountDown x:Name="countdown" Canvas.Left="473" Canvas.Top="245"/>
+                    <PresentationTrainer:CountDownPause x:Name="countdownPause" Canvas.Left="473" Canvas.Top="245"/>
+
+                    <!--  <Image Name="ghostMove" Canvas.Left="60" Canvas.Top="180"   Height="650" Visibility="Visible" Source="Images/ghost_outline.png"/> -->
+                    <!--<Image Name="Podium"  Source="Images\Podium.jpg"  Width="1000" Height="400" Canvas.Top="470" />-->
+
+                </Canvas>
+            </Viewbox>
+        </Grid>
+        <PresentationTrainer:FreestyleTextFeedback Canvas.Left="30" Canvas.Top="354" x:Name="textFeedback"/>
+        <PresentationTrainer:FreestyleOldText Canvas.Left="30" Canvas.Top="284" x:Name="oldTextFeedback"/>
+        <Button x:Name="logStopButton" Content="Log and Stop" Canvas.Left="1246" Canvas.Top="758" Width="123" Height="70" Click="logStopButton_Click" Visibility="Collapsed" />
+        <Button x:Name="reportStopButton" Content="Report and Stop" Canvas.Left="1246" Canvas.Top="683" Width="123" Height="70" Click="reportStopButton_Click" Visibility="Collapsed"/>
+        <Button x:Name="stopButton" Content="Stop" Canvas.Left="1246" Canvas.Top="608" Width="123" Height="70" Click="stopButton_Click" Visibility="Collapsed"/>
+        <Label  Visibility="Collapsed" Name="debugLabel" Content="1" Height="391" Canvas.Left="777" Canvas.Top="50" Width="524" FontSize="28"/>
+        <Button Content="PT" Canvas.Left="30" Canvas.Top="21" Width="75" Height="43" Background="Transparent" Foreground="White" FontSize="18" Click="Button_Click"/>
+        <Image Height="100" Canvas.Left="1130" Canvas.Top="354" Width="100" Visibility="Collapsed" Source="Images\smiley.jpg" Name="smiley"/>
+    </Canvas>
+
+</UserControl>

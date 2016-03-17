@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="PresentationTrainer.GhostMoving"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="300">
+    <Grid>
+        <Label Name="CurrentFeedback" Content="HELLO"  FontSize="36" Foreground="White" Background="LightBlue" Margin="0,403,10,191"  Visibility="Visible"/>
+        <Image Name="ghostImg"   Height="650" Visibility="Visible" Source="Images/ghost_outline.png"/>
+        <Image Name="mark" Height="300" Source="Images/check-mark-512.gif" Margin="0,10,10,156"/>
+    </Grid>
+</UserControl>
