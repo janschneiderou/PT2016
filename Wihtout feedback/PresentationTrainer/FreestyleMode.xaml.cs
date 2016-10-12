@@ -1431,6 +1431,13 @@ namespace PresentationTrainer
 
             string logString = MainWindow.stringStartFinish;
 
+            double ptm = (MainWindow.postureMistakeTime + MainWindow.volumeMistakeTime
+                + (MainWindow.gestureMistakeTime - 5000 * MainWindow.totalGesturesMistakes) +
+                MainWindow.totalHmmmMistakes * 200 + (MainWindow.seriousMistakeTime - 25000 * MainWindow.totalSeriousMistakes)
+                - MainWindow.totalgoodiesTime) / MainWindow.presentationDuration;
+
+            logString = logString + System.Environment.NewLine + "PTM " + ptm + "";
+
             logString = logString + System.Environment.NewLine + "Posture Mistakes " + MainWindow.totalPostureMistakes;
             logString = logString + System.Environment.NewLine + "Volume Mistakes " + MainWindow.totalVolumeMistakes;
             logString = logString + System.Environment.NewLine + "Gesture Mistakes " + MainWindow.totalGesturesMistakes;

@@ -355,7 +355,8 @@ namespace PresentationTrainer
                     goodiesL.RemoveAt(j - 1);
                     //do end goodie logging 
                     double currentTime = DateTime.Now.TimeOfDay.TotalMilliseconds;
-                    MainWindow.stringGoodies = MainWindow.stringGoodies + currentTime+"/>";
+                    MainWindow.totalgoodiesTime = MainWindow.totalgoodiesTime + currentTime - MainWindow.smileTime;
+                    MainWindow.stringGoodies = MainWindow.stringGoodies + currentTime + "/>";
                 }
             }
         }
@@ -378,9 +379,10 @@ namespace PresentationTrainer
                 {
                     goodiesL.Add(ba);
                     double currentTime = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                    MainWindow.smileTime = currentTime;
                     MainWindow.stringGoodies = MainWindow.stringGoodies + "<" + ba.myGoodie.ToString() + "," + currentTime + ",";
                 }
-            }  
+            }
 
         }
         #endregion

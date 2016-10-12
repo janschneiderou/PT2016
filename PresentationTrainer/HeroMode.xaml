@@ -7,7 +7,7 @@
              d:DesignHeight="800" d:DesignWidth="1300">
     <Canvas  Name="myCanvas">
 
-        <Image Source="Images\background_blue.jpg" Name="backgroundImg" Canvas.Left="0" Canvas.Top="0"/>
+        <Image Source="Images\SuperHeroBackground.png" Name="backgroundImg" Canvas.Left="-10" Canvas.Top="0"/>
 
         <Grid Canvas.Left="200" Canvas.Top="-100">
             <Viewbox Grid.Row="0" HorizontalAlignment="Center" >
@@ -27,7 +27,7 @@
             </Viewbox>
         </Grid>
         
-        <Image Source="Images\heroW.png" Name="heroAvatar" Canvas.Left="61" Canvas.Top="404" ></Image>
+        <Image Source="Images\female_hero.png" Name="heroAvatar" Canvas.Left="61" Canvas.Top="404" Height="400" ></Image>
         <Image Source="Images\talkingbubble.png" Name="talkBubble" Canvas.Left="193" Canvas.Top="195" ></Image>
         <Label Content="j" Height="74" Canvas.Left="247" Canvas.Top="273" Width="260" FontSize="35" Name="herofeedback"/>
         <PresentationTrainer:CountDown x:Name="countdown" Canvas.Left="573" Canvas.Top="245" Visibility="Collapsed"/>
@@ -35,22 +35,23 @@
         <PresentationTrainer:SuperInspiration1 x:Name="inspiration1" Canvas.Left="61" Canvas.Top="195" Visibility="Visible" Height="410" Width="1050"/>
 
         <Rectangle Fill="White" HorizontalAlignment="Left"
-		        Height="128" Canvas.Left="10" Canvas.Top="10"
+		        Height="80" Canvas.Left="50" Canvas.Top="10"
 		        Stroke="Black" StrokeThickness="5"
 		        VerticalAlignment="Top" Width="1144"
 		        RadiusY="13.5" RadiusX="13.5" AllowDrop="True" Name="instructionRectangle" Visibility="Collapsed"/>
-        <Label Name="instructionsLabel" Content="Lets start by standing in the Superhero posture." Canvas.Left="76" Canvas.Top="41" Height="80" Width="1064" FontSize="35" Visibility="Collapsed"/>
+        <Label Name="instructionsLabel" Content="Lets start by standing in the Superhero posture." Canvas.Left="116" Canvas.Top="12" Height="80" Width="1064" FontSize="35" Visibility="Collapsed"/>
 
+       
         <PresentationTrainer:SuperHeroPowers x:Name="heroPower" Canvas.Left="0" Canvas.Top="0" Visibility="Visible" Height="800" Width="1300"/>
         <PresentationTrainer:SuperHeroInspiration2 x:Name="heroInspiration2" Canvas.Left="0" Canvas.Top="0" Visibility="Visible" Height="800" Width="1300"/>
         <PresentationTrainer:SuperHeroImpact x:Name="heroImpact" Canvas.Left="0" Canvas.Top="0" Visibility="Visible" Height="800" Width="1300"/>
         <PresentationTrainer:SuperHeroCelebration x:Name="heroCelebration" Canvas.Left="0" Canvas.Top="0" Visibility="Visible" Height="800" Width="1300"/>
         <PresentationTrainer:superHeroExit x:Name="heroExit" Canvas.Left="0" Canvas.Top="0" Visibility="Visible" Height="800" Width="1300"/>
-        <PresentationTrainer:SuperHeroLesson x:Name="HeroLesson" ></PresentationTrainer:SuperHeroLesson>
-        <PresentationTrainer:SuperHeroAffirmation x:Name="HeroAffirmation" ></PresentationTrainer:SuperHeroAffirmation>
+        <PresentationTrainer:SuperHeroLesson x:Name="HeroLesson" Canvas.Left="200" Canvas.Top="50" ></PresentationTrainer:SuperHeroLesson>
+        <PresentationTrainer:SuperHeroAffirmation x:Name="HeroAffirmation" Canvas.Left="200" Canvas.Top="50" ></PresentationTrainer:SuperHeroAffirmation>
         <MediaElement x:Name="music" Height="100" Canvas.Left="260" Canvas.Top="780" Width="100"  Source="Sounds\CHARIOTS.wav" LoadedBehavior="Manual"  Visibility="Visible"/>
         <MediaElement x:Name="coin" Height="100" Canvas.Left="434" Canvas.Top="838" Width="100" Source="Sounds\smw_coin.wav" LoadedBehavior="Manual"  Visibility="Visible"/>
 
-
+        <PresentationTrainer:HeroSelection x:Name="heroSelection"  Canvas.Left="0" Canvas.Top="-44" Visibility="Visible" Height="800" Width="1300"  />
     </Canvas>
 </UserControl>

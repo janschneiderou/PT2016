@@ -114,18 +114,85 @@ namespace PresentationTrainer
             PhoneticRect.Width = ScrollCanvas.Width;
             DancingRect.Width = ScrollCanvas.Width;
 
-            getPostureMistakes();
+            try
+            {
+                getPostureMistakes();
+            }
+            catch
+            {
 
-            getGestureMistakes();
+            }
 
-            getVolumeMistakes();
-            getCadenceMistakes();
-            getPhoneticMistakes();
-            getDancingMistakes();
-            getSeriousMistakes();
-            getSmiles();
 
-            getFeedbacks();
+            try
+            {
+                getGestureMistakes();
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                getVolumeMistakes();
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                getCadenceMistakes();
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                getPhoneticMistakes();
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                getDancingMistakes();
+            }
+            catch
+            {
+
+            }
+
+            try
+            {
+                getSeriousMistakes();
+            }
+            catch
+            {
+
+            }
+
+            try
+            {
+                getSmiles();
+            }
+            catch
+            {
+
+            }
+
+            try
+            {
+                getFeedbacks();
+            }
+            catch
+            {
+
+            }
+
+
 
         }
 

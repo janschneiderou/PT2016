@@ -25,7 +25,9 @@
 		        RadiusY="13.5" RadiusX="13.5" AllowDrop="True" Name="instructionRectangle2" Visibility="Collapsed" Canvas.Left="289"/>
             <Label Name="instructionsLabel2"  Content="How Great did it Feel?" Canvas.Left="481" Canvas.Top="461" Height="80" Width="364" FontSize="35" Visibility="Collapsed"/>
 
-            <Button Name="nextButton" Content="Next" FontSize="40" Foreground="White" Background="LightBlue" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Height="98" Click="Button_Click" IsEnabled="False" Canvas.Left="930" Canvas.Top="648"/>
+            <Button Name="nextButton" FontSize="40" Foreground="White" Background="Transparent" HorizontalAlignment="Left" Canvas.Left="948" Canvas.Top="542" VerticalAlignment="Top" Width="192" Height="97" Click="Button_Click" Visibility="Collapsed">
+                <Image Name="imgButton" Source="Images\Button_next.png" />
+            </Button>
         </Canvas>
     </k:KinectRegion>
 </UserControl>

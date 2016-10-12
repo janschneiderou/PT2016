@@ -899,7 +899,7 @@ namespace PresentationTrainer
                 case PresentationAction.MistakeType.ARMSCROSSED:
                 case PresentationAction.MistakeType.LEFTHANDBEHINDBACK:
                 case PresentationAction.MistakeType.LEFTHANDUNDERHIP:
-                //   case PresentationAction.MistakeType.LEGSCROSSED:
+                   case PresentationAction.MistakeType.LEGSCROSSED:
                 case PresentationAction.MistakeType.RIGHTHANDBEHINDBACK:
                 case PresentationAction.MistakeType.RIGHTHANDUNDERHIP:
                 case PresentationAction.MistakeType.HUNCHBACK:
@@ -1268,7 +1268,7 @@ namespace PresentationTrainer
             float leftPositionGhost = factor * xHead + displacement;
             Canvas.SetLeft(ghostDancing, factor * xHead + displacement);
             ghostDancing.Visibility = Visibility.Visible;
-            var uriSource = new Uri(@"/PresentationTrainer;component/Images/ic_fb_reset_posture.png", UriKind.Relative);
+            var uriSource = new Uri(@"/PresentationTrainer;component/Images/ic_fb_move_more.png", UriKind.Relative);
             ghostDancingTF.FeedbackIMG.Source = new BitmapImage(uriSource);
             ghostDancingTF.FeedbackIMG.Visibility = Visibility.Visible;
 
@@ -1430,6 +1430,13 @@ namespace PresentationTrainer
             parent.rulesAnalyzerFIFO.logRemainingMistakes();
 
             string logString = MainWindow.stringStartFinish;
+
+            double ptm = (MainWindow.postureMistakeTime + MainWindow.volumeMistakeTime 
+                + (MainWindow.gestureMistakeTime - 5000* MainWindow.totalGesturesMistakes) + 
+                MainWindow.totalHmmmMistakes*200 + (MainWindow.seriousMistakeTime -25000*MainWindow.totalSeriousMistakes)
+                -MainWindow.totalgoodiesTime)/MainWindow.presentationDuration ;
+
+            logString = logString + System.Environment.NewLine + "PTM " + ptm + "";
 
             logString = logString + System.Environment.NewLine + "Posture Mistakes " + MainWindow.totalPostureMistakes;
             logString = logString + System.Environment.NewLine + "Volume Mistakes " + MainWindow.totalVolumeMistakes;

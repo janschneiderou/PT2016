@@ -60,6 +60,7 @@ namespace PresentationTrainer
         public static string stringGoodies = "";
 
 
+
         public static int totalPostureMistakes = 0;
         public static int totalGesturesMistakes = 0;
         public static int totalVolumeMistakes = 0;
@@ -98,6 +99,7 @@ namespace PresentationTrainer
         public static double seriousMistakeTime;
 
         public static double smileTime;
+        public static double totalgoodiesTime;
 
         public static double presentationStarted;
 

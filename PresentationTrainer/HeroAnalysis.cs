@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Kinect;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace PresentationTrainer
 {
@@ -36,7 +38,7 @@ namespace PresentationTrainer
         string stringInspiration2 = "Select 3 values that you find inspiring in others";
         string stringInspiration1 = "Select your most inspiring personality trait";
         string stringImpact = "Select 3 values that  as Super Hero what will you bring to the world?";
-        string stringSavingTown = "Use your super strength to bring the resources into TeliTown";
+        string stringSavingTown = "Select 3 values that  as Super Hero what will you bring to the world?";
         string stringCelebration = "Celebrate as a hero!";
         string stringCorrectPosture = "Go back to your Super Hero Posture";
 
@@ -292,6 +294,7 @@ namespace PresentationTrainer
                     }
                     if (currentTime - endCelebration > timeToMoveCelebration && secondCelebration == true )
                     {
+                        parent.heroMode.heroCelebration.nextButton.Visibility = System.Windows.Visibility.Visible;
                         parent.heroMode.heroCelebration.nextButton.IsEnabled = true;
                         finishCelebration = true;
                     }
@@ -341,6 +344,26 @@ namespace PresentationTrainer
         {
             if (checkingPosture() == true)
             {
+
+                float xHead = 0.1f;
+                float factor = 345.45f;
+                float displacement = 573;
+                if (parent.bodyFrameHandler.bodyFramePreAnalysis.body != null)
+                {
+                    xHead = parent.bodyFrameHandler.bodyFramePreAnalysis.body.Joints[JointType.Head].Position.X;
+                }
+
+                Canvas.SetLeft(parent.heroMode.heroInspiration2.backgroundImg, factor * xHead + displacement);
+                Canvas.SetLeft(parent.heroMode.heroInspiration2.ellipse, factor * xHead + displacement + 50);
+                Canvas.SetLeft(parent.heroMode.heroInspiration2.line1, factor * xHead + displacement - 40);
+                Canvas.SetLeft(parent.heroMode.heroInspiration2.line2, factor * xHead + displacement + 110);
+                Canvas.SetLeft(parent.heroMode.heroInspiration2.line3, factor * xHead + displacement + 190);
+
+                targetLeft1 = factor * xHead + displacement;
+                targetLeft2 = targetLeft1 + 110;
+
+
+
                 parent.heroMode.instructionsLabel.Content = stringInspiration2;
                 parent.heroMode.heroInspiration2.Visibility = System.Windows.Visibility.Visible;
                 parent.heroMode.heroAvatar.Visibility = System.Windows.Visibility.Collapsed;
@@ -391,6 +414,24 @@ namespace PresentationTrainer
         {
             if(checkingPosture()==true)
             {
+
+                float xHead=0.1f;
+                float factor = 345.45f;
+                float displacement = 573;
+                if (parent.bodyFrameHandler.bodyFramePreAnalysis.body != null)
+                {
+                    xHead = parent.bodyFrameHandler.bodyFramePreAnalysis.body.Joints[JointType.Head].Position.X;
+                }
+                
+                Canvas.SetLeft(parent.heroMode.heroPower.backgroundImg, factor * xHead + displacement);
+                Canvas.SetLeft(parent.heroMode.heroPower.ellipse, factor * xHead + displacement+50);
+                Canvas.SetLeft(parent.heroMode.heroPower.line1, factor * xHead + displacement-40);
+                Canvas.SetLeft(parent.heroMode.heroPower.line2, factor * xHead + displacement+110);
+                Canvas.SetLeft(parent.heroMode.heroPower.line3, factor * xHead + displacement + 190);
+
+                targetLeft1 = factor * xHead + displacement;
+                targetLeft2 = targetLeft1 + 110;
+
                 parent.heroMode.instructionsLabel.Content = stringPowerSelection;
                 parent.heroMode.heroPower.Visibility = System.Windows.Visibility.Visible;
                 parent.heroMode.heroAvatar.Visibility = System.Windows.Visibility.Collapsed;
@@ -414,52 +455,52 @@ namespace PresentationTrainer
             int dropcount = 0;
             if (parent.heroMode.heroPower.Element1.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element1.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element1.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element2.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element2.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element2.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element3.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element3.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element3.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element4.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element4.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element4.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element5.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element5.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element5.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element6.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element6.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element6.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element7.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element7.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element7.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element8.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element8.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element8.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element9.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element9.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element9.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroPower.Element10.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroPower.Element10.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroPower.Element10.Child).getText() + "\n";
                 dropcount++;
             }
 
@@ -481,7 +522,9 @@ namespace PresentationTrainer
             else if (dropcount == 3)
             {
                 parent.heroMode.heroPower.line3.Visibility = System.Windows.Visibility.Visible;
+                parent.heroMode.heroPower.nextButton.Visibility = System.Windows.Visibility.Visible;
                 parent.heroMode.heroPower.nextButton.IsEnabled = true;
+                
                 parent.heroMode.heroPower.Element10.Visibility = System.Windows.Visibility.Collapsed;
                 parent.heroMode.heroPower.Element1.Visibility = System.Windows.Visibility.Collapsed;
                 parent.heroMode.heroPower.Element2.Visibility = System.Windows.Visibility.Collapsed;
@@ -501,52 +544,52 @@ namespace PresentationTrainer
             int dropcount = 0;
             if (parent.heroMode.heroInspiration2.Element1.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element1.Child).Content+"\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element1.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element2.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element2.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element2.Child).getText() + "\n"; ;
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element3.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element3.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element3.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element4.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element4.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element4.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element5.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element5.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element5.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element6.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element6.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element6.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element7.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element7.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element7.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element8.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element8.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element8.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element9.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element9.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element9.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroInspiration2.Element10.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroInspiration2.Element10.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroInspiration2.Element10.Child).getText() + "\n";
                 dropcount++;
             }
 
@@ -568,6 +611,7 @@ namespace PresentationTrainer
             else if (dropcount==3)
             {
                 parent.heroMode.heroInspiration2.line3.Visibility = System.Windows.Visibility.Visible;
+                parent.heroMode.heroInspiration2.nextButton.Visibility = System.Windows.Visibility.Visible;
                 parent.heroMode.heroInspiration2.nextButton.IsEnabled = true;
                 parent.heroMode.heroInspiration2.Element10.Visibility = System.Windows.Visibility.Collapsed;
                 parent.heroMode.heroInspiration2.Element1.Visibility = System.Windows.Visibility.Collapsed;
@@ -588,52 +632,52 @@ namespace PresentationTrainer
             int dropcount = 0;
             if (parent.heroMode.heroImpact.Element1.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element1.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element1.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element2.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element2.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element2.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element3.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element3.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element3.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element4.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element4.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element4.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element5.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element5.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element5.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element6.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element6.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element6.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element7.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element7.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element7.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element8.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element8.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element8.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element9.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element9.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element9.Child).getText() + "\n";
                 dropcount++;
             }
             if (parent.heroMode.heroImpact.Element10.dropCorrecly == true)
             {
-                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((System.Windows.Controls.Label)parent.heroMode.heroImpact.Element10.Child).Content + "\n";
+                parent.heroMode.HeroAffirmation.selections = parent.heroMode.HeroAffirmation.selections + ((DropInterface)parent.heroMode.heroImpact.Element10.Child).getText() + "\n";
                 dropcount++;
             }
 
@@ -655,6 +699,7 @@ namespace PresentationTrainer
             else if (dropcount == 3)
             {
                 parent.heroMode.heroImpact.line3.Visibility = System.Windows.Visibility.Visible;
+                parent.heroMode.heroImpact.nextButton.Visibility = System.Windows.Visibility.Visible;
                 parent.heroMode.heroImpact.nextButton.IsEnabled = true;
                 parent.heroMode.heroImpact.Element10.Visibility = System.Windows.Visibility.Collapsed;
                 parent.heroMode.heroImpact.Element1.Visibility = System.Windows.Visibility.Collapsed;

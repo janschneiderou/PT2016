@@ -10,49 +10,52 @@
     <k:KinectRegion x:Name="kinectRegion" Background="Transparent">
         <Canvas>
 
-            <Image Source="Images\heroGhostP.png" Name="backgroundImg" Canvas.Left="452" Canvas.Top="122" Height="518" Width="477"/>
-            <Button Name="nextButton" Content="Next" FontSize="40" Foreground="White" Background="LightBlue" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Height="98" Click="Button_Click" IsEnabled="False" Canvas.Left="948" Canvas.Top="542"/>
+            <Image Source="Images\heroGhostP.png" Name="backgroundImg" Canvas.Left="452" Canvas.Top="162" Height="500"/>
+            <Button Name="nextButton" FontSize="40" Foreground="White" Background="Transparent" HorizontalAlignment="Left" Canvas.Left="948" Canvas.Top="542" VerticalAlignment="Top" Width="192" Height="97" Click="Button_Click" Visibility="Collapsed">
+                <Image Name="imgButton" Source="Images\Button_next.png" />
+            </Button>
             <Ellipse 
+                Name="ellipse"
                 Canvas.Top="250"
                 Canvas.Left="537"
                 Fill="Transparent"
                 Height="124"
                 Width="120"
                 StrokeThickness="6"
-                Stroke="#EC4AD7"/>
-            <Line Name="line1" Visibility="Collapsed" Stroke="#EC4AD7" StrokeThickness="6" X1="0" X2="60" Y1="0" Y2="60" Canvas.Left="452" Canvas.Top="194" Height="65" Width="72"/>
-            <Line  Name="line2" Visibility="Collapsed" Stroke="#EC4AD7" StrokeThickness="6" X1="0" X2="0" Y1="0" Y2="80" Canvas.Left="598" Canvas.Top="138" Height="85" Width="72"/>
-            <Line Name="line3" Visibility="Collapsed" Stroke="#EC4AD7" StrokeThickness="6" X1="0" X2="60" Y1="80" Y2="0" Canvas.Left="670" Canvas.Top="174" Height="85" Width="72"/>
+                Stroke="White"/>
+            <Line Name="line1" Visibility="Collapsed" Stroke="White" StrokeThickness="6" X1="0" X2="60" Y1="0" Y2="60" Canvas.Left="452" Canvas.Top="194" Height="65" Width="72"/>
+            <Line  Name="line2" Visibility="Collapsed" Stroke="White" StrokeThickness="6" X1="0" X2="0" Y1="0" Y2="80" Canvas.Left="598" Canvas.Top="138" Height="85" Width="72"/>
+            <Line Name="line3" Visibility="Collapsed" Stroke="White" StrokeThickness="6" X1="0" X2="60" Y1="80" Y2="0" Canvas.Left="670" Canvas.Top="174" Height="85" Width="72"/>
 
             <PresentationTrainer:DragDropElement x:Name="Element1" Canvas.Left="57" Canvas.Top="236" Height="88" Width="240" >
-                <Label  BorderBrush="Yellow" Content="Determination" Canvas.Left="57" Canvas.Top="236" Height="88" Width="240" Background="AliceBlue" FontSize="28"/>
+                <PresentationTrainer:DropInterface x:Name="drop1"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element2" Canvas.Left="57" Canvas.Top="326" Height="88" Width="240">
-                <Label BorderBrush="Yellow" Content="Kindess" Canvas.Left="57" Canvas.Top="326" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop2"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element3" Canvas.Left="911" Canvas.Top="126" Height="88" Width="240">
-                <Label BorderBrush="Yellow" Content="Creativity" Canvas.Left="911" Canvas.Top="126" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop3"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element4" Canvas.Left="428" Canvas.Top="109" Height="88" Width="240">
-                <Label BorderBrush="Yellow" Content="Honesty" Canvas.Left="428" Canvas.Top="109" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop4"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element5" Canvas.Left="144" Canvas.Top="126" Height="88" Width="240">
-                <Label BorderBrush="Yellow" Content="Courage" Canvas.Left="144" Canvas.Top="126" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop5"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element6"  Canvas.Left="119" Canvas.Top="511" Height="88" Width="240">
-                <Label BorderBrush="Yellow" Content="Strength" Canvas.Left="119" Canvas.Top="511" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop6"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element7"  Canvas.Left="977" Canvas.Top="236" Height="88" Width="196">
-                <Label BorderBrush="Yellow" Content="Discipline" Canvas.Left="977" Canvas.Top="236" Height="88" Width="196" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop7"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element8"  Canvas.Left="977" Canvas.Top="343" Height="88" Width="240">
-                <Label BorderBrush="Yellow" Content="+ Attitude" Canvas.Left="977" Canvas.Top="343" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop8"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element9"  Canvas.Left="934" Canvas.Top="442" Height="88" Width="240">
-                <Label  BorderBrush="Yellow" Content="Resilience" Canvas.Left="934" Canvas.Top="442" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop9"/>
             </PresentationTrainer:DragDropElement>
             <PresentationTrainer:DragDropElement x:Name="Element10"  Canvas.Top="425" Height="88" Width="240">
-                <Label BorderBrush="Yellow" Content="intelligence" Canvas.Left="57" Canvas.Top="425" Height="88" Width="240" FontSize="28" Background="AliceBlue"/>
+                <PresentationTrainer:DropInterface x:Name="drop10"/>
             </PresentationTrainer:DragDropElement>
 
         </Canvas>

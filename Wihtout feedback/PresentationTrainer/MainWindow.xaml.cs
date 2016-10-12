@@ -96,6 +96,7 @@ namespace PresentationTrainer
         public static double seriousMistakeTime;
 
         public static double smileTime;
+        public static double totalgoodiesTime;
 
         public static double presentationStarted;
 

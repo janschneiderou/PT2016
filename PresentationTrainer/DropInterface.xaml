@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="PresentationTrainer.DropInterface"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="240">
+    <Grid>
+        <Ellipse Name="ellipse"
+                Fill="#262262"
+                Width="240"
+                 Height="100"
+                StrokeThickness="6"
+                Stroke="#3a86ff" Margin="0,0,0,0"/>
+        <Label Name="first" Content="Super" HorizontalAlignment="Left" FontSize="28" Foreground="White" Margin="72,3,0,0" VerticalAlignment="Top" Width="119" Height="46"/>
+        <Label Name="second" Content="Assertiveness" HorizontalAlignment="Left" FontSize="28" Foreground="White" Margin="25,37,0,0" VerticalAlignment="Top" Width="182" Height="46"/>
+    </Grid>
+</UserControl>

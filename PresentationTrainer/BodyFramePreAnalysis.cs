@@ -36,8 +36,8 @@ namespace PresentationTrainer
         public bool heroNeck = false;
         public bool heroMistake=true;
         public bool heroWinning = false;
-        
 
+        public static bool rightHandUp = false;
 
 
         public double shouldersAngle;
@@ -407,6 +407,15 @@ namespace PresentationTrainer
 
             shouldersAngle = Math.Asin(zLine /
                 (Math.Sqrt(zLine * zLine + xLine * xLine)));
+
+
+            CameraSpacePoint left = body.Joints[JointType.HandLeft].Position;
+            CameraSpacePoint right = body.Joints[JointType.HandRight].Position;
+
+            if (left.Y > right.Y)
+                rightHandUp = false;
+            else
+                rightHandUp = true;
         }
 
         public void getHipsAngle()
@@ -461,15 +470,21 @@ namespace PresentationTrainer
 
         public void getHunch()
         {
-            
 
             double x1 = body.Joints[JointType.Head].Position.X * Math.Sin(shouldersAngle);
             double z1 = body.Joints[JointType.Head].Position.Z * Math.Cos(shouldersAngle);
 
-            double x2 = body.Joints[JointType.SpineMid].Position.X * Math.Sin(shouldersAngle);
-            double z2 = body.Joints[JointType.SpineMid].Position.Z * Math.Cos(shouldersAngle);
+            double x2 = body.Joints[JointType.SpineShoulder].Position.X * Math.Sin(shouldersAngle);
+            double z2 = body.Joints[JointType.SpineShoulder].Position.Z * Math.Cos(shouldersAngle);
 
-            if (-x1 + z1 < -x2 + z2)
+            double distanceShoulders = Math.Sqrt((body.Joints[JointType.ShoulderRight].Position.X - body.Joints[JointType.ShoulderLeft].Position.X) *
+                (body.Joints[JointType.ShoulderRight].Position.X - body.Joints[JointType.ShoulderLeft].Position.X) +
+                (body.Joints[JointType.ShoulderRight].Position.Z - body.Joints[JointType.ShoulderLeft].Position.Z) *
+                (body.Joints[JointType.ShoulderRight].Position.Z - body.Joints[JointType.ShoulderLeft].Position.Z));
+
+
+
+            if (-x1 + z1 < -x2 + z2 - distanceShoulders * 0.05)
             {
                 
                 hunch = true;

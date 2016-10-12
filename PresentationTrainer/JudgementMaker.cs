@@ -114,7 +114,7 @@ namespace PresentationTrainer
                 if (periodicMovements.checPeriodicMovements(bfpa.body))
                 {
                     PresentationAction pa = new PresentationAction(PresentationAction.MistakeType.DANCING);
-                    pa.interrupt = true;
+                  //  pa.interrupt = true;
                    // periodicMov = true;
                     mistakeList.Insert(0, pa);
                 }

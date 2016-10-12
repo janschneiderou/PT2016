@@ -28,6 +28,7 @@ namespace PresentationTrainer
         public string InstructionHeroPosture = "Lets start by standing in the Superhero posture.";
         public string InstructionValue = "Select a value that you identify with.";
         public bool isLoaded = false;
+        public static bool heroFemale = true;
 
         public HeroMode()
         {
@@ -56,8 +57,38 @@ namespace PresentationTrainer
             heroExit.Visibility = Visibility.Collapsed;
             heroExit.nextButton.Click += nextButton_Click;
 
+           
+
+            heroSelection.button1.Click += button1Selection_Click;
+            heroSelection.button2.Click +=button2Selection_Click;
+
+        
 
             isLoaded = true;
+        }
+
+        private void button2Selection_Click(object sender, RoutedEventArgs e)
+        {
+            heroFemale = false;
+            heroSelection.Visibility = Visibility.Collapsed;
+            var uriSource = new Uri(@"/PresentationTrainer;component/Images/male_hero_silhouette.png", UriKind.Relative);
+                    
+
+            heroPower.backgroundImg.Source = new BitmapImage(uriSource);
+            heroInspiration2.backgroundImg.Source = new BitmapImage(uriSource);
+        }
+
+        void button1Selection_Click(object sender, RoutedEventArgs e)
+        {
+            heroFemale = true;
+            heroSelection.Visibility = Visibility.Collapsed;
+
+            var uriSource = new Uri(@"/PresentationTrainer;component/Images/female_hero_silhouette.png", UriKind.Relative);
+
+
+            heroPower.backgroundImg.Source = new BitmapImage(uriSource);
+            heroInspiration2.backgroundImg.Source = new BitmapImage(uriSource);
+            
         }
 
         void nextButton_Click(object sender, RoutedEventArgs e)

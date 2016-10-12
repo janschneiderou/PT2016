@@ -17,7 +17,9 @@
             <Label Name="LabelLessonNumber" Content="1" HorizontalAlignment="Left" FontSize="45" Height="70" Margin="446,27,0,0" VerticalAlignment="Top" Width="93"/>
             <Label Name="LabelLessonName" Content="Posture:" HorizontalAlignment="Left" Margin="28,132,0,0" VerticalAlignment="Top" Width="652" Height="75" FontSize="40"/>
             <Label Name="LabelLessonExplanation" Content="In this lesson you will learn the Super Hero Posture" HorizontalAlignment="Left" Margin="28,212,0,0" VerticalAlignment="Top" Width="837" Height="248" FontSize="35"/>
-            <Button Content="Next" FontSize="40" Foreground="White" Background="LightBlue" HorizontalAlignment="Left" Margin="325,479,0,0" VerticalAlignment="Top" Width="192" Height="97" Click="Button_Click"/>
+            <Button Name="button1" FontSize="40" Foreground="White" Background="Transparent" HorizontalAlignment="Left" Margin="325,479,0,0" VerticalAlignment="Top" Width="192" Height="97" Click="Button_Click">
+                <Image Name="imgButton" Source="Images\Button_start.png" />
+            </Button>
         </Grid>
     </k:KinectRegion>
 </UserControl>

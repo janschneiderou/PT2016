@@ -9,11 +9,13 @@
              d:DesignHeight="800" d:DesignWidth="1200">
     <k:KinectRegion x:Name="kinectRegion" Background="LightBlue">
         <Canvas>
+            <Image Source="Images\SuperHeroBackground.png" Name="background" Canvas.Left="0" />
+            <Image Source="Images\Amy.jpg" Name="earth" Canvas.Left="235" Height="543" Width="734"/>
 
-            <Image Source="Images\Amy.jpg" Name="earth" Canvas.Left="64" Canvas.Top="-54" Height="618" Width="602"/>
 
-
-            <Button Name="nextButton" Content="Finish" FontSize="40" Foreground="White" Background="LightBlue" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Height="98"  IsEnabled="True" Canvas.Left="449" Canvas.Top="588"/>
+            <Button Name="nextButton" FontSize="40" Foreground="White" Background="Transparent" HorizontalAlignment="Left" Canvas.Left="508" Canvas.Top="612" VerticalAlignment="Top" Width="192" Height="97"  Visibility="Visible">
+                <Image Name="imgButton" Source="Images\Button_next.png" />
+            </Button>
         </Canvas>
     </k:KinectRegion>
 </UserControl>

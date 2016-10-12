@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Kinect.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,39 @@ namespace PresentationTrainer
         int lessonNumber = 1;
         public delegate void NextEvent(object sender, int x);
         public event NextEvent nextEvent;
+
+        public KinectCoreWindow window;
+
         public SuperHeroLesson()
         {
             InitializeComponent();
             setStrings(1);
+            window = KinectCoreWindow.GetForCurrentThread();
+            window.PointerMoved += window_PointerMoved;
         }
+
+        private void window_PointerMoved(object sender, KinectPointerEventArgs e)
+        {
+            var uriSource = new Uri(@"/PresentationTrainer;component/Images/Button_start.png", UriKind.Relative);
+
+          
+            if ((!BodyFramePreAnalysis.rightHandUp && e.CurrentPoint.Properties.HandType == HandType.LEFT) ||
+              (BodyFramePreAnalysis.rightHandUp && e.CurrentPoint.Properties.HandType == HandType.RIGHT))
+            {
+                if (e.CurrentPoint.Position.X * this.ActualWidth > button1.Margin.Left && e.CurrentPoint.Position.X * this.ActualWidth < button1.Margin.Left + button1.Width
+               && e.CurrentPoint.Position.Y * this.ActualHeight > button1.Margin.Top && e.CurrentPoint.Position.Y * this.ActualHeight < button1.Margin.Top + button1.ActualHeight)
+                {
+                    uriSource = new Uri(@"/PresentationTrainer;component/Images/Button_start_hover.png", UriKind.Relative);
+                    imgButton.Source = new BitmapImage(uriSource);
+                }
+                else
+                {
+                    uriSource = new Uri(@"/PresentationTrainer;component/Images/Button_start.png", UriKind.Relative);
+                    imgButton.Source = new BitmapImage(uriSource);
+                }
+            }
+        }
+
         public void setStrings(int lesson)
         {
             lessonNumber = lesson;
@@ -60,11 +89,11 @@ namespace PresentationTrainer
                     break;
                 case 6:
                     LabelLessonNumber.Content = "6";
-                    LabelLessonName.Content = "Saving the town";
-                    LabelLessonExplanation.Content = "In this lesson you will use yor super strength \nto help the town";
+                    LabelLessonName.Content = "Celebration";
+                    LabelLessonExplanation.Content = "In this lesson you will celebrate your \n Super Hero Achivements";
                     break;
                 case 7:
-                    LabelLessonNumber.Content = "7";
+                    LabelLessonNumber.Content = "6";
                     LabelLessonName.Content = "Celebration";
                     LabelLessonExplanation.Content = "In this lesson you will celebrate your \n Super Hero Achivements";
                     break;
@@ -74,6 +103,7 @@ namespace PresentationTrainer
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             nextEvent(this, lessonNumber);
+            window.PointerMoved -= window_PointerMoved;
             this.Visibility = Visibility.Collapsed;
         }
     }
