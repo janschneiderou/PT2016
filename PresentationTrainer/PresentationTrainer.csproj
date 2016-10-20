@@ -75,8 +75,6 @@
     <Compile Include="CountDownPause.xaml.cs">
       <DependentUpon>CountDownPause.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DragDropElement.cs" />
-    <Compile Include="DragDropElementController.cs" />
     <Compile Include="DropInterface.xaml.cs">
       <DependentUpon>DropInterface.xaml</DependentUpon>
     </Compile>
@@ -93,17 +91,6 @@
     </Compile>
     <Compile Include="GhostMoving.xaml.cs">
       <DependentUpon>GhostMoving.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HeroAnalysis.cs" />
-    <Compile Include="HeroMode.xaml.cs">
-      <DependentUpon>HeroMode.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HeroPlay.xaml.cs">
-      <DependentUpon>HeroPlay.xaml</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="HeroSelection.xaml.cs">
-      <DependentUpon>HeroSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="IndividualDancing.cs" />
     <Compile Include="IndividualFinish.xaml.cs">
@@ -128,6 +115,9 @@
       <DependentUpon>InterruptFeedback.xaml</DependentUpon>
     </Compile>
     <Compile Include="JudgementMaker.cs" />
+    <Compile Include="login.xaml.cs">
+      <DependentUpon>login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PauseControl.xaml.cs">
       <DependentUpon>PauseControl.xaml</DependentUpon>
     </Compile>
@@ -166,30 +156,6 @@
       <DependentUpon>SkeletonTraker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Style.cs" />
-    <Compile Include="SuperHeroAffirmation.xaml.cs">
-      <DependentUpon>SuperHeroAffirmation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SuperHeroCelebration.xaml.cs">
-      <DependentUpon>SuperHeroCelebration.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="superHeroExit.xaml.cs">
-      <DependentUpon>superHeroExit.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SuperHeroImpact.xaml.cs">
-      <DependentUpon>SuperHeroImpact.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SuperHeroInspiration2.xaml.cs">
-      <DependentUpon>SuperHeroInspiration2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SuperHeroLesson.xaml.cs">
-      <DependentUpon>SuperHeroLesson.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SuperHeroPowers.xaml.cs">
-      <DependentUpon>SuperHeroPowers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SuperInspiration1.xaml.cs">
-      <DependentUpon>SuperInspiration1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ValueSelection.xaml.cs">
       <DependentUpon>ValueSelection.xaml</DependentUpon>
     </Compile>
@@ -245,19 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="HeroMode.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HeroPlay.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="HeroSelection.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="IndividualFinish.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -275,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InterruptFeedback.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,38 +267,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SkeletonTraker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SuperHeroAffirmation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SuperHeroCelebration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="superHeroExit.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SuperHeroImpact.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SuperHeroInspiration2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SuperHeroLesson.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SuperHeroPowers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SuperInspiration1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -46,7 +46,7 @@ namespace PresentationTrainer
             myBody.initializeB(parent);
             myAudio.initialize(parent);
             mySkeleton.initialize(parent);
-            parent.heroAnalysis.loadStuff();
+
             values.Visibility = Visibility.Collapsed;
             heroPower.Visibility = Visibility.Collapsed;
             HeroAffirmation.Visibility = Visibility.Collapsed;

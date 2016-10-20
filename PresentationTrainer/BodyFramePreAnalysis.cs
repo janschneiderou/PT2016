@@ -1,4 +1,25 @@
-﻿using System;
+﻿/**
+ * ****************************************************************************
+ * Copyright (C) 2016 Open Universiteit Nederland
+ * <p/>
+ * This library is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * <p/>
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * <p/>
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ * <p/>
+ * Contributors: Jan Schneider
+ * ****************************************************************************
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -477,6 +498,8 @@ namespace PresentationTrainer
             double x2 = body.Joints[JointType.SpineShoulder].Position.X * Math.Sin(shouldersAngle);
             double z2 = body.Joints[JointType.SpineShoulder].Position.Z * Math.Cos(shouldersAngle);
 
+
+
             double distanceShoulders = Math.Sqrt((body.Joints[JointType.ShoulderRight].Position.X - body.Joints[JointType.ShoulderLeft].Position.X) *
                 (body.Joints[JointType.ShoulderRight].Position.X - body.Joints[JointType.ShoulderLeft].Position.X) +
                 (body.Joints[JointType.ShoulderRight].Position.Z - body.Joints[JointType.ShoulderLeft].Position.Z) *
@@ -508,8 +531,15 @@ namespace PresentationTrainer
             double x2 = body.Joints[JointType.HipRight].Position.X * Math.Cos(shouldersAngle);
             double z2 = body.Joints[JointType.HipRight].Position.Z * Math.Sin(shouldersAngle);
 
+            double x3 = (body.Joints[JointType.HipLeft].Position.X - body.Joints[JointType.HipRight].Position.X)
+                * (body.Joints[JointType.HipLeft].Position.X - body.Joints[JointType.HipRight].Position.X);
+            double z3 = (body.Joints[JointType.HipLeft].Position.Z - body.Joints[JointType.HipRight].Position.Z)
+                * (body.Joints[JointType.HipLeft].Position.Z - body.Joints[JointType.HipRight].Position.Z);
+            double length1 = Math.Sqrt(x3 + z3);
+
+
             if(body.Joints[JointType.HandTipRight].Position.Y< body.Joints[JointType.HipRight].Position.Y &&
-                x1 - z1 < x2 - z2)
+                x1 - z1 +length1*.01 < x2 - z2)
             {
 
 
@@ -532,8 +562,14 @@ namespace PresentationTrainer
             double x2 = body.Joints[JointType.HipLeft].Position.X * Math.Cos(shouldersAngle);
             double z2 = body.Joints[JointType.HipLeft].Position.Z * Math.Sin(shouldersAngle);
 
+            double x3 = (body.Joints[JointType.HipLeft].Position.X - body.Joints[JointType.HipRight].Position.X)
+                * (body.Joints[JointType.HipLeft].Position.X - body.Joints[JointType.HipRight].Position.X);
+            double z3 = (body.Joints[JointType.HipLeft].Position.Z - body.Joints[JointType.HipRight].Position.Z)
+                * (body.Joints[JointType.HipLeft].Position.Z - body.Joints[JointType.HipRight].Position.Z);
+            double length1 = Math.Sqrt(x3 + z3);
+
             if (body.Joints[JointType.HandTipLeft].Position.Y < body.Joints[JointType.HipLeft].Position.Y &&
-                x2 - z2 > x1 - z1)
+                x2 - z2 < x1 - z1 + length1 * .01)
             {
                 leftHandUnderHips = true;
                 bodyPosture = Posture.bad;

@@ -1,4 +1,24 @@
-﻿using System;
+﻿/**
+ * ****************************************************************************
+ * Copyright (C) 2016 Open Universiteit Nederland
+ * <p/>
+ * This library is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * <p/>
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * <p/>
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ * <p/>
+ * Contributors: Jan Schneider
+ * ****************************************************************************
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +48,7 @@ namespace PresentationTrainer
         public MainMenu mainMenu;
         public enum States { menu, freestyle, volumeCalibration, individual, hero};
         public static States myState;
-        public HeroMode heroMode;
+      
 
         public static SerialPort hapticPort;
         public static bool stopGesture = false;
@@ -37,7 +57,7 @@ namespace PresentationTrainer
         public InfraredFrameReader frameReader = null;
         public RulesAnalyzer rulesAnalyzer;
         public RulesAnalyzerFIFO rulesAnalyzerFIFO;
-        public HeroAnalysis heroAnalysis;
+
 
         public VideoHandler videoHandler;
         public AudioHandler audioHandler;
@@ -116,7 +136,7 @@ namespace PresentationTrainer
             this.kinectSensor.Open();
             this.frameReader = this.kinectSensor.InfraredFrameSource.OpenReader();
 
-            heroAnalysis = new HeroAnalysis(this);
+            
             rulesAnalyzer = new RulesAnalyzer(this);
             rulesAnalyzerFIFO = new RulesAnalyzerFIFO(this);
             videoHandler = new VideoHandler(this.kinectSensor);
@@ -157,7 +177,7 @@ namespace PresentationTrainer
                     loadVolumeCalibration();
                     break;
                 case States.hero:
-                    loadHeroMode();
+                  //  loadHeroMode();
                     break;
 
                
@@ -166,12 +186,7 @@ namespace PresentationTrainer
 
         private void loadHeroMode()
         {
-            heroMode = new HeroMode();
-            MainCanvas.Children.Add(heroMode);
-            Canvas.SetTop(heroMode, 0);
-            Canvas.SetLeft(heroMode, 0);
-            heroMode.Loaded += heroMode_Loaded;
-            heroMode.exitEvent += heroMode_exitEvent;
+            
         }
 
         void heroMode_exitEvent(object sender)
@@ -183,13 +198,12 @@ namespace PresentationTrainer
 
         private void closeHeroMode()
         {
-            MainCanvas.Children.Remove(heroMode);
+           
         }
 
         void heroMode_Loaded(object sender, RoutedEventArgs e)
         {
-            heroMode.parent = this;
-            heroMode.loaded();
+           
         }
 
         public void loadVolumeCalibration()
@@ -468,10 +482,7 @@ namespace PresentationTrainer
                     }
                     break;
                 case States.hero:
-                    if(heroMode.isLoaded)
-                    {
-                        heroAnalysis.analyseCycle();
-                    }
+                   
                         
 
                     break;
