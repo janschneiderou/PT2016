@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="PresentationTrainer.GestureReport"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2014"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1300" >
+    <k:KinectRegion x:Name="kinectRegion" Background="#0099CC">
+        <Grid Margin="0,10,0,-10">
+            <Image Name="gesture1" Stretch="Fill" HorizontalAlignment="Left" Height="476" Margin="-236,167,0,0" VerticalAlignment="Top" Width="846"/>
+            <Image Name="gesture2" Stretch="Fill" HorizontalAlignment="Left" Height="476" Margin="104,167,0,0" VerticalAlignment="Top" Width="846"/>
+            <Image Name="gesture3" Stretch="Fill" HorizontalAlignment="Left" Height="476" Margin="396,167,0,0" VerticalAlignment="Top" Width="846"/>
+
+            <Rectangle Fill="#0099CC" HorizontalAlignment="Left" Height="75"  Margin="28,74,0,0" Stroke="Black" VerticalAlignment="Top" Width="966"/>
+            <Label Content="Gesture Report" FontSize="24" Foreground="Orange" HorizontalAlignment="Left" Margin="30,18,0,0" VerticalAlignment="Top" Height="56" Width="352"/>
+            <Label Content="Gesture Timeline" FontSize="24" Foreground="Orange" HorizontalAlignment="Left" Margin="28,88,0,0" VerticalAlignment="Top"/>
+            <Canvas Background="LightCyan" Name="speakingTimeline" HorizontalAlignment="Left" Height="75" Margin="221,74,0,0" VerticalAlignment="Top" Width="800"/>
+            <Grid HorizontalAlignment="Left" Height="187" Margin="10,503,0,0" VerticalAlignment="Top" Width="1247" Background="AliceBlue">
+                <Button x:Name="GoMainMenu"  Background="Transparent" HorizontalAlignment="Right" Margin="0,36,62,0" VerticalAlignment="Top" Width="126" Height="101" Visibility="Collapsed" >
+                    <Image Source="Images/exercises-yellow.png" />
+                </Button>
+                <Label Name="labelFinish" Content="Finish Presentation" Background="Transparent" HorizontalAlignment="Right" Height="43" Margin="0,134,10,0" VerticalAlignment="Top" Width="186" Foreground="#0099CC" FontSize="20" RenderTransformOrigin="0.607,0.5" Visibility="Collapsed"/>
+                <Button Name="buttonNext"  HorizontalAlignment="Right" Margin="0,36,62,0" Click="Button_Click" VerticalAlignment="Top" Width="126" Height="101">
+                    <Image Source="Images/exercises-yellow.png" />
+                </Button>
+                <Label Name="labelNext" Content="Next" Background="Transparent" HorizontalAlignment="Left" Height="43" Margin="1092,137,0,0" VerticalAlignment="Top" Width="58" Foreground="#0099CC" FontSize="20" RenderTransformOrigin="0.845,0.625" />
+                <TextBox Name="answerQuestion" Visibility="Collapsed" HorizontalAlignment="Left" Height="23" Margin="10,150,0,0" TextWrapping="Wrap" Text="I will focus on " VerticalAlignment="Top" Width="966"/>
+
+            </Grid>
+            <Label Name="labelQuestion" Content="What gestures can you add to support the communication of your message?" Foreground="#0099CC" FontSize="32" HorizontalAlignment="Left" Margin="44,562,0,0" VerticalAlignment="Top" Height="65" Width="977"/>
+
+
+        </Grid>
+    </k:KinectRegion>
+</UserControl>
