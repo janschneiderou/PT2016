@@ -34,6 +34,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
 using System.IO.Ports;
+using System.Collections;
 
 namespace PresentationTrainer
 {
@@ -41,6 +42,8 @@ namespace PresentationTrainer
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     ///
+   
+
     public partial class MainWindow : Window
     {
         public FreestyleMode freestyleMode;
@@ -48,10 +51,14 @@ namespace PresentationTrainer
         public MainMenu mainMenu;
         public enum States { menu, freestyle, volumeCalibration, individual, hero};
         public static States myState;
-      
+        public Pausereport pauseReport;
+        public GestureReport gestureReport;
+        public PostureReport postureReport;
+        public FutureImprovement futureImprovement;
 
         public static SerialPort hapticPort;
         public static bool stopGesture = false;
+        public static string FileName = "";
 
         private KinectSensor kinectSensor;
         public InfraredFrameReader frameReader = null;
@@ -67,6 +74,11 @@ namespace PresentationTrainer
 
         public ReportControl reportControl;
 
+        public static string focusedString = "";
+        public static string focusedPauses = "";
+        public static string focusedGestures = "";
+        public static string focusedPosture = "";
+
         public static string stringStartFinish = "";
         public static string stringGestures = "";
         public static string stringInterruptions = "";
@@ -79,7 +91,10 @@ namespace PresentationTrainer
         public static string stringReport="";
         public static string stringGoodies = "";
 
-
+        public static ArrayList speakTimes;
+        public static ArrayList gestureTimes;
+        public static ImageSource[] gestureImages;
+        public static ImageSource[] postureImages;
 
         public static int totalPostureMistakes = 0;
         public static int totalGesturesMistakes = 0;
@@ -121,7 +136,8 @@ namespace PresentationTrainer
         public static double smileTime;
         public static double totalgoodiesTime;
 
-        public static double presentationStarted;
+        public static double presentationStarted=0;
+        public static double presentationFinished;
 
         public static string logString;
 
@@ -136,7 +152,7 @@ namespace PresentationTrainer
             this.kinectSensor.Open();
             this.frameReader = this.kinectSensor.InfraredFrameSource.OpenReader();
 
-            
+           focusedString= System.IO.File.ReadAllText("focused.txt");
             rulesAnalyzer = new RulesAnalyzer(this);
             rulesAnalyzerFIFO = new RulesAnalyzerFIFO(this);
             videoHandler = new VideoHandler(this.kinectSensor);
@@ -229,11 +245,13 @@ namespace PresentationTrainer
             MainCanvas.Children.Add(mainMenu);
             Canvas.SetTop(mainMenu, 0);
             Canvas.SetLeft(mainMenu, 0);
+     
             mainMenu.Loaded += mainMenu_Loaded;
         }
 
         void mainMenu_Loaded(object sender, RoutedEventArgs e)
         {
+            mainMenu.focusedLabel.Content = focusedString;
             mainMenu.FreestyleButton.Click += mainMenu_FreestyleClicked;
             mainMenu.volumeCalibrationButton.Click += volumeCalibrationButton_Click;
             mainMenu.Hero.Click += Hero_Click;
@@ -255,7 +273,15 @@ namespace PresentationTrainer
             {
                 freestyleMode = new FreestyleMode();
             }
-            
+            speakTimes = new ArrayList();
+            gestureTimes = new ArrayList();
+            gestureImages = new ImageSource[3];
+            postureImages = new ImageSource[3];
+            for (int i = 0; i < 3;i++ )
+            {
+                gestureImages[i] = null;
+                postureImages[i] = null;
+            }
             freestyleMode.Height = this.ActualHeight;
             freestyleMode.Width = this.ActualWidth;
             MainCanvas.Children.Add(freestyleMode);
@@ -336,7 +362,7 @@ namespace PresentationTrainer
         {
             closeMainMenu();
             myState = States.freestyle;
-            setInitialStrings();
+          //  setInitialStrings();
             if (freestyleMode != null)
             {
                 rulesAnalyzerFIFO.resetAll();
@@ -383,6 +409,8 @@ namespace PresentationTrainer
             // we might have to unsubscribe (-=) to the click event of the pressed button
         }
 
+        #region selfreflection
+
         public void closeFreeStyleMode()
         {
            freestyleMode.setGhostMovingInvisible();
@@ -393,15 +421,7 @@ namespace PresentationTrainer
           // MainCanvas.Children.Remove(freestyleMode);
            freestyleMode.Visibility = Visibility.Collapsed;
 
-           reportControl = new ReportControl();
-            MainCanvas.Children.Add(reportControl);
-            reportControl.doInit();
-           Canvas.SetLeft(reportControl, 20);
-           Canvas.SetTop(reportControl, 20);
-
-           reportControl.GoMainMenu.Click += GoMainMenu_Click;
-
-           //reportControl.GoMainMenu.Click += GoMainMenu1_Click ;
+           doPausesesReflection();
 
 
 
@@ -409,14 +429,122 @@ namespace PresentationTrainer
             
           //  loadMode();
         }
+        void doPausesesReflection()
+        {
+            pauseReport = new Pausereport();
+            MainCanvas.Children.Add(pauseReport);
+
+
+            Canvas.SetLeft(pauseReport, 20);
+            Canvas.SetTop(pauseReport, 20);
+            pauseReport.GoMainMenu.Click += GoMainMenu_Click_Pause;
+        }
+
+        void doGestureReflection()
+        {
+            
+            gestureReport = new GestureReport();
+            MainCanvas.Children.Add(gestureReport);
+
+
+            Canvas.SetLeft(gestureReport, 20);
+            Canvas.SetTop(gestureReport, 20);
+            gestureReport.GoMainMenu.Click += GoMainMenu_Click_Gesture;
+        }
+
+        void doPostureReflection()
+        {
+            postureReport = new PostureReport();
+            MainCanvas.Children.Add(postureReport);
+
+
+            Canvas.SetLeft(postureReport, 20);
+            Canvas.SetTop(postureReport, 20);
+            postureReport.GoMainMenu.Click += GoMainMenu_Click_Posture;
+        }
+        void doTimelineReflection()
+        {
+            reportControl = new ReportControl();
+            MainCanvas.Children.Add(reportControl);
+            reportControl.doInit();
+            Canvas.SetLeft(reportControl, 20);
+            Canvas.SetTop(reportControl, 20);
+
+            reportControl.GoMainMenu.Click += GoMainMenu_Click;
+        }
+
+        void doSelectionFutureReflection()
+        {
+            futureImprovement = new FutureImprovement();
+            MainCanvas.Children.Add(futureImprovement);
+
+            Canvas.SetLeft(futureImprovement, 20);
+            Canvas.SetTop(futureImprovement, 20);
+
+            futureImprovement.selectionEvent += futureImprovement_selectionEvent;
+        }
+
+        void futureImprovement_selectionEvent()
+        {
+            MainCanvas.Children.Remove(futureImprovement);
+
+            try
+            {
+                freestyleMode.unload();
+                MainCanvas.Children.Remove(freestyleMode);
+                freestyleMode = null;
+            }
+           catch
+            {
+
+            }
+
+            System.IO.File.WriteAllText(FileName, logString);
+            System.IO.File.WriteAllText("focused.txt", focusedString);
+            speakTimes = new ArrayList();
+            gestureTimes = new ArrayList();
+            loadMode();
+        }
 
         void GoMainMenu_Click(object sender, RoutedEventArgs e)
         {
             MainCanvas.Children.Remove(reportControl);
             reportControl = null;
-            loadMode();
+
+            doSelectionFutureReflection();
+            
+            
+            
         }
 
+        private void GoMainMenu_Click_Pause(object sender, RoutedEventArgs e)
+        {
+            focusedPauses = pauseReport.answer1.Text;
+            MainCanvas.Children.Remove(pauseReport);
+            pauseReport = null;
+            
+            doGestureReflection();
+        }
+
+        private void GoMainMenu_Click_Gesture(object sender, RoutedEventArgs e)
+        {
+            focusedGestures = gestureReport.answerQuestion.Text;
+            MainCanvas.Children.Remove(gestureReport);
+            gestureReport = null;
+
+            doPostureReflection();
+        }
+
+        private void GoMainMenu_Click_Posture(object sender, RoutedEventArgs e)
+        {
+            focusedPosture = postureReport.answerQuestion.Text;
+            MainCanvas.Children.Remove(postureReport);
+            postureReport = null;
+            doTimelineReflection();
+           
+        }
+
+        #endregion
 
         public void setInitialStrings()
         {
@@ -433,6 +561,7 @@ namespace PresentationTrainer
         }
         public void setFinalStrings()
         {
+            presentationFinished = DateTime.Now.TimeOfDay.TotalMilliseconds;
             presentationDuration = DateTime.Now.TimeOfDay.TotalMilliseconds - presentationStarted;
             stringStartFinish = stringStartFinish + System.Environment.NewLine + "<Finish Time>" + DateTime.Now.TimeOfDay.TotalMilliseconds + "</FinishTime>" + System.Environment.NewLine;
             stringGestures = stringGestures + System.Environment.NewLine + "</Gestures>" + System.Environment.NewLine;

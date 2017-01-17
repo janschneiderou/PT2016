@@ -42,7 +42,7 @@ namespace PresentationTrainer
 
         public double TIME_TO_CONSIDER_ACTION = 300;
         public double TIME_TO_CONSIDER_CORRECTION = 100;
-        public double TIME_TO_CONSIDER_INTERRUPTION = 6000;
+        public double TIME_TO_CONSIDER_INTERRUPTION = 6000000;// 6000; //changed
 
         public double ThresholdDefaultHandMovement = 1000;
         public double HandMovementFactor = 3770;
@@ -57,6 +57,13 @@ namespace PresentationTrainer
         public double lastSmile = 0;
 
         public bool gesturesDone = false;
+
+        public int resetGestureImage = 0;
+        public bool resetGestureImageBool = false;
+
+        public double lastPostureImageTime;
+        public double TIME_TO_NEW_POSTURE_IMAGE = 15000;
+        public bool resetPostureImage = false;
 
      //   public bool periodicMov = false;
 
@@ -91,7 +98,7 @@ namespace PresentationTrainer
            audioMovementMistakeTempList = new ArrayList();
            bodyMistakes = new ArrayList();
            lastSmile = DateTime.Now.TimeOfDay.TotalMilliseconds;
-            
+           lastPostureImageTime = DateTime.Now.TimeOfDay.TotalMilliseconds;
         }
 
         public void clearLists()
@@ -155,12 +162,35 @@ namespace PresentationTrainer
         #region addingBodyMistakes
 
 
-
+        private void addPostureImages()
+        {
+            double currenTime =  DateTime.Now.TimeOfDay.TotalMilliseconds;
+            if(resetPostureImage==true || currenTime-lastPostureImageTime > TIME_TO_NEW_POSTURE_IMAGE )
+            {
+                if (MainWindow.postureImages[0] == null)
+                {
+                    MainWindow.postureImages[0] = parent.videoHandler.kinectImage.Source.CloneCurrentValue();
+                    lastPostureImageTime = currenTime;
+                }
+                else if (MainWindow.postureImages[1] == null &&
+                    currenTime - lastPostureImageTime > 5000)
+                {
+                    MainWindow.postureImages[1] = parent.videoHandler.kinectImage.Source.CloneCurrentValue();
+                    lastPostureImageTime = currenTime;
+                }
+                else if (currenTime - lastPostureImageTime > 5000)
+                {
+                    MainWindow.postureImages[2] = parent.videoHandler.kinectImage.Source.CloneCurrentValue();
+                    lastPostureImageTime = currenTime;
+                }
+            }
+        }
 
         private void addBodyMistakes()
         {
             addNewMistakesToTemp();
             findMistakesInTempList();
+            addPostureImages();
 
         }
 
@@ -200,7 +230,7 @@ namespace PresentationTrainer
                             {
 
                                 bodyMistakes.Add(fa);
-                                
+                                resetPostureImage = true;
                                 
                                 fa.firstImage = parent.videoHandler.kinectImage.Source.CloneCurrentValue();
                             }
@@ -274,9 +304,14 @@ namespace PresentationTrainer
             if (myVoiceAndMovementObject.isSpeaking == true && apa.isSpeaking == true)
             {
                 handleSpeakingTime();
+                if(MainWindow.speakTimes.Count==0)
+                {
+                    MainWindow.speakTimes.Add(DateTime.Now.TimeOfDay.TotalMilliseconds);
+                }
             }
             else if (myVoiceAndMovementObject.isSpeaking == false && apa.isSpeaking == true)
             {
+                MainWindow.speakTimes.Add(DateTime.Now.TimeOfDay.TotalMilliseconds);
                 logPauses();
                 resetMyVoiceAndMovement();
                 timePreviousPauses = timePreviousPauses + timePausing;
@@ -289,6 +324,11 @@ namespace PresentationTrainer
             }
             else if (myVoiceAndMovementObject.isSpeaking == true && apa.isSpeaking == false)
             {
+                if(MainWindow.speakTimes.Count>0)
+                {
+                    MainWindow.speakTimes.Add(DateTime.Now.TimeOfDay.TotalMilliseconds);
+                }
+               
                 logSpeaking();
                 resetMyVoiceAndMovement();
                 handlePauses();
@@ -386,7 +426,24 @@ namespace PresentationTrainer
             {
                 timeLastGesture = currentTime;
                 timePreviousPauses = 0;
+                
             }
+            if (armMovementsCalc.prePreviousGesture == ArmMovementsCalc.Gesture.nogesture &&
+                armMovementsCalc.currentGesture != armMovementsCalc.prePreviousGesture )
+            {
+                MainWindow.gestureTimes.Add(currentTime);
+                //parent.videoHandler.kinectImage.Source.CloneCurrentValue();
+            }
+            if (armMovementsCalc.prePreviousGesture != armMovementsCalc.currentGesture &&
+                armMovementsCalc.currentGesture == ArmMovementsCalc.Gesture.nogesture && MainWindow.gestureTimes.Count>0)
+            {
+                MainWindow.gestureTimes.Add(currentTime);
+            }
+
+    
+
+            assignPictures();
+
             timeBetweenGestures = currentTime - timeLastGesture + timePreviousPauses;
             if (timeBetweenGestures>5000)
             { 
@@ -402,6 +459,49 @@ namespace PresentationTrainer
                 }
 
                 audioMovementMistakeTempList.Add(pa);
+            }
+        }
+
+        private void assignPictures()
+        {
+            if(resetGestureImageBool==false)
+            {
+                 if(MainWindow.gestureImages[0]==null)
+                {
+                    resetGestureImage=0;
+                }
+                else if(MainWindow.gestureImages[1]==null)
+                {
+                    resetGestureImage=1;
+                }
+                else 
+                {
+                    resetGestureImage=2;
+                }
+               
+                resetGestureImageBool=true;
+            }
+          
+            if (armMovementsCalc.prePreviousGesture != armMovementsCalc.currentGesture &&
+               resetGestureImageBool == true)
+            {
+                if(resetGestureImage==0)
+                {
+                    MainWindow.gestureImages[0] = parent.videoHandler.kinectImage.Source.CloneCurrentValue();
+                }
+                else if(resetGestureImage==1)
+                {
+                    MainWindow.gestureImages[1] = parent.videoHandler.kinectImage.Source.CloneCurrentValue();
+                }
+                else if( resetGestureImage==2)
+                {
+                    MainWindow.gestureImages[2] = parent.videoHandler.kinectImage.Source.CloneCurrentValue();
+                }
+                
+            }
+            if (armMovementsCalc.currentGesture == ArmMovementsCalc.Gesture.nogesture )
+            {
+                resetGestureImageBool = false;
             }
         }
 

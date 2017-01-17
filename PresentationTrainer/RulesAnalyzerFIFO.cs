@@ -97,7 +97,7 @@ namespace PresentationTrainer
        public double timeBetweenFeedbacks = 3500;
        public bool noInterrupt = true;
 
-       int interruptNumber = 4;
+       int interruptNumber = 9999999 ;//4;
  
         public RulesAnalyzerFIFO(MainWindow parent)
         {
@@ -149,9 +149,10 @@ namespace PresentationTrainer
                 // */
                 if (parent.freestyleMode.myState == PresentationTrainer.FreestyleMode.currentState.play )
                 {
+                    myJudgementMaker.analyze();
                     if(checkTimeToStartAnalysing()==true)
                     {
-                        myJudgementMaker.analyze();
+                      //  myJudgementMaker.analyze();
 
                          /*
                         parent.freestyleMode.debugLabel.Content = "right " +(int)myJudgementMaker.armMovementsCalc.rightArmAngleChange +
@@ -949,7 +950,7 @@ namespace PresentationTrainer
             MainWindow.stringInterruptions = MainWindow.stringInterruptions + System.Environment.NewLine +
                   "<interruption>" + ((PresentationAction)mistakes[0]).myMistake.ToString() +
                   System.Environment.NewLine + DateTime.Now.TimeOfDay.TotalMilliseconds + "</interruption>";
-
+            MainWindow.speakTimes.Add(DateTime.Now.TimeOfDay.TotalMilliseconds);
             myInterruptionEvent(this, sentMistakes);
             
            // doGoodEventStuff();

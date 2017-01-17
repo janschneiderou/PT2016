@@ -86,6 +86,12 @@
     <Compile Include="FreestyleOldText.xaml.cs">
       <DependentUpon>FreestyleOldText.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FutureImprovement.xaml.cs">
+      <DependentUpon>FutureImprovement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestureReport.xaml.cs">
+      <DependentUpon>GestureReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ghost.xaml.cs">
       <DependentUpon>Ghost.xaml</DependentUpon>
     </Compile>
@@ -120,6 +126,12 @@
     </Compile>
     <Compile Include="PauseControl.xaml.cs">
       <DependentUpon>PauseControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pausereport.xaml.cs">
+      <DependentUpon>Pausereport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PostureReport.xaml.cs">
+      <DependentUpon>PostureReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="PresentationAction.cs" />
     <Compile Include="PresentationEvent.cs" />
@@ -199,6 +211,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FutureImprovement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestureReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ghost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +275,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PauseControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pausereport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PostureReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -528,6 +556,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Button_start_hover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ghost_smilewhite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Sounds\CHARIOTS.wav">

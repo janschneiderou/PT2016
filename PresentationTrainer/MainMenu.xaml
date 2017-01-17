@@ -15,8 +15,9 @@
             <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="890,299,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click" Visibility="Collapsed" Name="Hero">
                 <Image Source="Images/telephone.png" />
             </Button>
-            
+
             <Button x:Name="volumeCalibrationButton"  Background="LightBlue" Content="Voice Calibration" HorizontalAlignment="Left" Margin="924,528,0,0" VerticalAlignment="Top" Width="231" Height="140" FontSize="28" Click="Button_Click_1"/>
+            <Label Name="focusedLabel" Content="" Foreground="AliceBlue" FontSize="30" HorizontalAlignment="Left" Height="52" Margin="166,43,0,0" VerticalAlignment="Top" Width="948"/>
         </Grid>
     </k:KinectRegion>
 </UserControl>

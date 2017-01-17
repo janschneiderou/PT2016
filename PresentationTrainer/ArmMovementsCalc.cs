@@ -34,6 +34,7 @@ namespace PresentationTrainer
         public enum Gesture { nogesture, small, medium, big };//TODO
         public Gesture currentGesture;
         public Gesture previousGesture;
+        public Gesture prePreviousGesture;
 
         public double MinAngleLeftArmShoulderLineA = 0;
         public double MinAngleLeftArmShoulderLineB = 0;
@@ -220,6 +221,7 @@ namespace PresentationTrainer
                 MainWindow.stringGestures = MainWindow.stringGestures + System.Environment.NewLine + currentGesture.ToString() +
                     " " + DateTime.Now.TimeOfDay.TotalMilliseconds;
             }
+            prePreviousGesture = previousGesture;
             previousGesture = currentGesture;
 
         }

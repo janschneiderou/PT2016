@@ -114,6 +114,7 @@ namespace PresentationTrainer
         }
         public void loaded()
         {
+            
             backgroundImg.Width = parent.ActualWidth;
             backgroundImg.Height = parent.ActualHeight;
             Canvas.SetLeft(backgroundImg, 0);
@@ -121,7 +122,7 @@ namespace PresentationTrainer
             myBody.initialize(parent);
             myAudio.initialize(parent);
             mySkeleton.initialize(parent);
-            
+            focusLabel.Content = MainWindow.focusedString;
 
             loadGhosts();
 
@@ -139,7 +140,19 @@ namespace PresentationTrainer
 
         }
 
-       
+       public void unload()
+        {
+            parent.rulesAnalyzerFIFO.feedBackEvent -= rulesAnalyzerFIFO_feedBackEvent;
+            parent.rulesAnalyzerFIFO.correctionEvent -= rulesAnalyzerFIFO_correctionEvent;
+            parent.rulesAnalyzerFIFO.myInterruptionEvent -= rulesAnalyzerFIFO_myInterruptionEvent;
+
+          
+            coinSound.MediaEnded -= coinSound_MediaEnded;
+            
+            countdown.countdownFinished -= countdown_countdownFinished;
+
+            countdownPause.countdownFinished -= countdownPause_countdownFinished;
+        }
 
         
 
@@ -1408,7 +1421,12 @@ namespace PresentationTrainer
 
         void countdown_countdownFinished(object sender)
         {
-            myState = currentState.play;
+           myState = currentState.play;
+            if(MainWindow.presentationStarted==0)
+            {
+                parent.setInitialStrings();
+            }
+           parent.rulesAnalyzerFIFO.myJudgementMaker.myVoiceAndMovementObject.isSpeaking = false;
            parent.rulesAnalyzerFIFO.myJudgementMaker.lastSmile = DateTime.Now.TimeOfDay.TotalMilliseconds;
         }
 
@@ -1493,8 +1511,8 @@ namespace PresentationTrainer
             logString = logString + System.Environment.NewLine + MainWindow.stringIndividualFeedbacks;
 
             string filename = (int)DateTime.Now.TimeOfDay.TotalMilliseconds + ".txt";
-            System.IO.File.WriteAllText(filename, logString);
-
+          //  System.IO.File.WriteAllText(filename, logString);
+            MainWindow.FileName = filename;
             MainWindow.logString = logString;
         }
 

@@ -39,7 +39,7 @@ namespace PresentationTrainer
         public float ThresholdIsLongPauseTime=3000f;
         public float ThresholdIsVeryLongPauseTime=6000f;
         public float ThresholdIsSpeakingLongTime=12000f;
-        public float ThresholdIsSpeakingVeryLongTime=15000f;
+        public float ThresholdIsSpeakingVeryLongTime= 15000000;//15000f;
         public float ThresholdShortPause=1000f;
         public float ThresholdActuallySpeaking = 500f;
         public float ThresholdShortSpeakingTime = 1000f;
