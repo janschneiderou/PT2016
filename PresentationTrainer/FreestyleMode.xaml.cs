@@ -176,8 +176,17 @@ namespace PresentationTrainer
             Canvas.SetTop(pauseControl, 20);
             pauseControl.GoBackButton.Click+=GoBackButtonPause_Click;
             pauseControl.GoMainMenu.Click+=GoMainMenu1_Click;
-            
 
+        }
+        public void pitchEnd()
+        {
+            myState = currentState.stop;
+            pauseControl = new PauseControl();
+            myCanvas.Children.Add(pauseControl);
+            Canvas.SetLeft(pauseControl, 20);
+            Canvas.SetTop(pauseControl, 20);
+            pauseControl.GoBackButton.Click += GoBackButtonPause_Click;
+            pauseControl.GoMainMenu.Click += GoMainMenu1_Click;
         }
 
         private void GoMainMenu_Click(object sender, RoutedEventArgs e)
@@ -600,93 +609,116 @@ namespace PresentationTrainer
 
         private void negativeHapticFeedback()
         {
-            MainWindow.hapticPort.Open();
+            try
+            {
+                //MainWindow.hapticPort.Open();
 
 
-            byte[] buffer = new byte[6];
-            buffer[0] = Convert.ToByte('R');
-            buffer[1] = Convert.ToByte('_');
-            buffer[2] = Convert.ToByte(255);
-            buffer[3] = Convert.ToByte(0);
-            buffer[4] = Convert.ToByte(0);
-            buffer[5] = Convert.ToByte(13);
+                //byte[] buffer = new byte[6];
+                //buffer[0] = Convert.ToByte('R');
+                //buffer[1] = Convert.ToByte('_');
+                //buffer[2] = Convert.ToByte(255);
+                //buffer[3] = Convert.ToByte(0);
+                //buffer[4] = Convert.ToByte(0);
+                //buffer[5] = Convert.ToByte(13);
 
-            MainWindow.hapticPort.Write(buffer, 0, 6);
-
-
-            //  myPort.Write(array, 0, 13);
-            MainWindow.hapticPort.Close();
+                //MainWindow.hapticPort.Write(buffer, 0, 6);
 
 
-            MainWindow.hapticPort.Open();
+                ////  myPort.Write(array, 0, 13);
+                //MainWindow.hapticPort.Close();
+
+
+                //MainWindow.hapticPort.Open();
+
+
+
+                //byte[] bufferH = new byte[5];
+                //bufferH[0] = Convert.ToByte('V');
+                //bufferH[1] = Convert.ToByte('_');
+                //bufferH[2] = Convert.ToByte(5);
+                //bufferH[3] = Convert.ToByte(10);
+                //bufferH[4] = Convert.ToByte(13);
+
+                //MainWindow.hapticPort.Write(bufferH, 0, 5);
+                //MainWindow.hapticPort.Close();
+            }
+            catch
+            {
+            }
            
-
-
-            byte[] bufferH = new byte[5];
-            bufferH[0] = Convert.ToByte('V');
-            bufferH[1] = Convert.ToByte('_');
-            bufferH[2] = Convert.ToByte(5);
-            bufferH[3] = Convert.ToByte(10);
-            bufferH[4] = Convert.ToByte(13);
-
-            MainWindow.hapticPort.Write(bufferH, 0, 5);
-            MainWindow.hapticPort.Close();
 
         }
 
        private void doHapticInterruption()
        {
-           MainWindow.hapticPort.Open();
+            try
+            {
+                //MainWindow.hapticPort.Open();
 
 
-           byte[] buffer = new byte[6];
-           buffer[0] = Convert.ToByte('R');
-           buffer[1] = Convert.ToByte('_');
-           buffer[2] = Convert.ToByte(255);
-           buffer[3] = Convert.ToByte(0);
-           buffer[4] = Convert.ToByte(0);
-           buffer[5] = Convert.ToByte(13);
+                //byte[] buffer = new byte[6];
+                //buffer[0] = Convert.ToByte('R');
+                //buffer[1] = Convert.ToByte('_');
+                //buffer[2] = Convert.ToByte(255);
+                //buffer[3] = Convert.ToByte(0);
+                //buffer[4] = Convert.ToByte(0);
+                //buffer[5] = Convert.ToByte(13);
 
-           MainWindow.hapticPort.Write(buffer, 0, 6);
-
-
-           //  myPort.Write(array, 0, 13);
-           MainWindow.hapticPort.Close();
+                //MainWindow.hapticPort.Write(buffer, 0, 6);
 
 
-           MainWindow.hapticPort.Open();
+                ////  myPort.Write(array, 0, 13);
+                //MainWindow.hapticPort.Close();
+
+
+                //MainWindow.hapticPort.Open();
 
 
 
-           byte[] bufferH = new byte[5];
-           bufferH[0] = Convert.ToByte('V');
-           bufferH[1] = Convert.ToByte('_');
-           bufferH[2] = Convert.ToByte(10);
-           bufferH[3] = Convert.ToByte(10);
-           bufferH[4] = Convert.ToByte(13);
+                //byte[] bufferH = new byte[5];
+                //bufferH[0] = Convert.ToByte('V');
+                //bufferH[1] = Convert.ToByte('_');
+                //bufferH[2] = Convert.ToByte(10);
+                //bufferH[3] = Convert.ToByte(10);
+                //bufferH[4] = Convert.ToByte(13);
 
-           MainWindow.hapticPort.Write(bufferH, 0, 5);
-           MainWindow.hapticPort.Close();
+                //MainWindow.hapticPort.Write(bufferH, 0, 5);
+                //MainWindow.hapticPort.Close();
+            }
+            catch
+            {
+
+            }
+          
        }
 
         private void positiveHapticFeedback()
         {
-            MainWindow.hapticPort.Open();
+            try
+            {
+                //MainWindow.hapticPort.Open();
 
 
-            byte[] buffer = new byte[6];
-            buffer[0] = Convert.ToByte('R');
-            buffer[1] = Convert.ToByte('_');
-            buffer[2] = Convert.ToByte(0);
-            buffer[3] = Convert.ToByte(255);
-            buffer[4] = Convert.ToByte(0);
-            buffer[5] = Convert.ToByte(13);
+                //byte[] buffer = new byte[6];
+                //buffer[0] = Convert.ToByte('R');
+                //buffer[1] = Convert.ToByte('_');
+                //buffer[2] = Convert.ToByte(0);
+                //buffer[3] = Convert.ToByte(255);
+                //buffer[4] = Convert.ToByte(0);
+                //buffer[5] = Convert.ToByte(13);
 
-            MainWindow.hapticPort.Write(buffer, 0, 6);
+                //MainWindow.hapticPort.Write(buffer, 0, 6);
 
 
-            //  myPort.Write(array, 0, 13);
-            MainWindow.hapticPort.Close();
+                ////  myPort.Write(array, 0, 13);
+                //MainWindow.hapticPort.Close();
+            }
+            catch
+            {
+
+            }
+          
         }
 
         #endregion

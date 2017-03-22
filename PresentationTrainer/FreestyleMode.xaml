@@ -22,6 +22,7 @@
                     <PresentationTrainer:CountDown x:Name="countdown" Canvas.Left="473" Canvas.Top="245"/>
                     <PresentationTrainer:CountDownPause x:Name="countdownPause" Canvas.Left="473" Canvas.Top="245"/>
                     <Label Name="focusLabel" Content="" Canvas.Left="264" Canvas.Top="121" Width="784" FontSize="30" Foreground="AliceBlue"/>
+                    <Image x:Name="alarmImage" Height="100" Canvas.Left="873" Canvas.Top="180" Width="100" Source="Images/alarmTime.png" Visibility="Collapsed"/>
 
                     <!--  <Image Name="ghostMove" Canvas.Left="60" Canvas.Top="180"   Height="650" Visibility="Visible" Source="Images/ghost_outline.png"/> -->
                     <!--<Image Name="Podium"  Source="Images\Podium.jpg"  Width="1000" Height="400" Canvas.Top="470" />-->

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationTrainer", "PresentationTrainer\PresentationTrainer.csproj", "{10371558-CBC1-4B1F-BAA7-D15A40292005}"
 EndProject
@@ -10,15 +10,23 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Debug|x64.ActiveCfg = Debug|x64
+		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Debug|x64.Build.0 = Debug|x64
 		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Release|x64.ActiveCfg = Release|x64
+		{10371558-CBC1-4B1F-BAA7-D15A40292005}.Release|x64.Build.0 = Release|x64
 		{E9292CAF-8652-48E9-8DE9-F100E69E31C1}.Debug|Any CPU.ActiveCfg = Debug
+		{E9292CAF-8652-48E9-8DE9-F100E69E31C1}.Debug|x64.ActiveCfg = Debug
 		{E9292CAF-8652-48E9-8DE9-F100E69E31C1}.Release|Any CPU.ActiveCfg = Release
+		{E9292CAF-8652-48E9-8DE9-F100E69E31C1}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

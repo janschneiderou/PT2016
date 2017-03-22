@@ -56,11 +56,27 @@ namespace PresentationTrainer
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             FreestyleButton.Content = "Pressed";
+            MainWindow.pitchTime = int.Parse(pitchTime.Text);
+            MainWindow.pitch = true;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.pitchTime = int.Parse(pitchTime.Text);
+            MainWindow.pitch = true;
         }
+
+        private void pitchTime_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+            int x = 1;
+            x++;
+        }
+        private static bool IsTextAllowed(string text)
+        {
+            return Array.TrueForAll<Char>(text.ToCharArray(),
+            delegate (Char c) { return Char.IsDigit(c) || Char.IsControl(c); });
+        }
+        
     }
 }

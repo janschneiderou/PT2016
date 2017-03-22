@@ -149,6 +149,18 @@ namespace PresentationTrainer
                 // */
                 if (parent.freestyleMode.myState == PresentationTrainer.FreestyleMode.currentState.play )
                 {
+                    if(MainWindow.pitch==true)
+                    {
+                        if (MainWindow.presentationStarted + (MainWindow.pitchTime * 1000) - 10000 < DateTime.Now.TimeOfDay.TotalMilliseconds )
+                        {
+                            parent.freestyleMode.alarmImage.Visibility = System.Windows.Visibility.Visible;
+                        }
+                        if(MainWindow.presentationStarted + (MainWindow.pitchTime * 1000)< DateTime.Now.TimeOfDay.TotalMilliseconds)
+                        {
+                            parent.freestyleMode.pitchEnd();
+                        }
+                    }
+                    
                     myJudgementMaker.analyze();
                     if(checkTimeToStartAnalysing()==true)
                     {

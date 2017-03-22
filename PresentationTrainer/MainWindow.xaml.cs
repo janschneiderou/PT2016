@@ -141,6 +141,9 @@ namespace PresentationTrainer
 
         public static string logString;
 
+        public static bool pitch = false;
+        public static int pitchTime = 70;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -251,10 +254,12 @@ namespace PresentationTrainer
 
         void mainMenu_Loaded(object sender, RoutedEventArgs e)
         {
+            pitch = false;
             mainMenu.focusedLabel.Content = focusedString;
             mainMenu.FreestyleButton.Click += mainMenu_FreestyleClicked;
             mainMenu.volumeCalibrationButton.Click += volumeCalibrationButton_Click;
-            mainMenu.Hero.Click += Hero_Click;
+            mainMenu.PitchButton.Click += mainMenu_FreestyleClicked;
+            //mainMenu.Hero.Click += Hero_Click;
         }
 
         void Hero_Click(object sender, RoutedEventArgs e)

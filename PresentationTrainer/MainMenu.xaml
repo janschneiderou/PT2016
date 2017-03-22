@@ -9,15 +9,18 @@
     <k:KinectRegion x:Name="kinectRegion" Background="Transparent">
         <Grid>
 
-            <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="179,299,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click" Name="FreestyleButton">
+            <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="166,235,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click" Name="FreestyleButton">
                 <Image Source="Images/ic_freestyle.png" />
             </Button>
-            <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="890,299,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click" Visibility="Collapsed" Name="Hero">
-                <Image Source="Images/telephone.png" />
+            <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="849,235,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click" Visibility="Visible" Name="PitchButton">
+                <Image Source="Images/ic_freestyle.png" />
             </Button>
 
             <Button x:Name="volumeCalibrationButton"  Background="LightBlue" Content="Voice Calibration" HorizontalAlignment="Left" Margin="924,528,0,0" VerticalAlignment="Top" Width="231" Height="140" FontSize="28" Click="Button_Click_1"/>
             <Label Name="focusedLabel" Content="" Foreground="AliceBlue" FontSize="30" HorizontalAlignment="Left" Height="52" Margin="166,43,0,0" VerticalAlignment="Top" Width="948"/>
+            <Label x:Name="label" Content="Pitch" FontSize="35" HorizontalAlignment="Left" Margin="883,169,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label1" Content="Seconds:" FontSize="20" HorizontalAlignment="Left" Margin="849,420,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="pitchTime" HorizontalAlignment="Left" PreviewTextInput="pitchTime_PreviewTextInput" Height="36" Margin="994,424,0,0" FontSize="20" TextWrapping="Wrap" Text="70" VerticalAlignment="Top" Width="120"/>
         </Grid>
     </k:KinectRegion>
 </UserControl>
