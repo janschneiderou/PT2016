@@ -122,6 +122,7 @@ namespace PresentationTrainer
             searchMistakes();
 
             saveCurrentBodyAsOldBody();
+            
 
             
         }

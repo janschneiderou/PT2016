@@ -59,6 +59,7 @@ namespace PresentationTrainer
 
             this.myFace = face;
             
+            
         }
         public void facePreAnalysis()
         {

@@ -46,6 +46,8 @@ namespace PresentationTrainer
 
     public partial class MainWindow : Window
     {
+        public bool tryHub = true;
+
         public FreestyleMode freestyleMode;
         public VolumeCalibration volumeCalibrationMode;
         public MainMenu mainMenu;
@@ -144,6 +146,8 @@ namespace PresentationTrainer
         public static bool pitch = false;
         public static int pitchTime = 70;
 
+        public ConnectorHub.ConnectorHub myConectorHub;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -151,11 +155,34 @@ namespace PresentationTrainer
             myState = States.menu;
             loadMode();
 
+            try
+            {
+                myConectorHub = new ConnectorHub.ConnectorHub();
+                myConectorHub.init();
+                myConectorHub.sendReady();
+                myConectorHub.startRecordingEvent += MyConectorHub_startRecordingEvent;
+                myConectorHub.stopRecordingEvent += MyConectorHub_stopRecordingEvent;
+                setValuesNames();
+
+            }
+            catch (Exception e)
+            {
+                int x = 1;
+            }
+
+
             this.kinectSensor = KinectSensor.GetDefault();
             this.kinectSensor.Open();
             this.frameReader = this.kinectSensor.InfraredFrameSource.OpenReader();
+            try
+            {
+                focusedString = System.IO.File.ReadAllText("focused.txt");
+            }
+            catch
+            {
 
-           focusedString= System.IO.File.ReadAllText("focused.txt");
+            }
+            
             rulesAnalyzer = new RulesAnalyzer(this);
             rulesAnalyzerFIFO = new RulesAnalyzerFIFO(this);
             videoHandler = new VideoHandler(this.kinectSensor);
@@ -166,6 +193,215 @@ namespace PresentationTrainer
             initializeHaptic();
         }
 
+        #region connectorHub
+
+        private void setValuesNames()
+        {
+            List<string> names = new List<string>();
+            string temp = "AverageVolume";
+            names.Add(temp);
+            temp = "FaceExpression";
+            names.Add(temp);
+            temp = "AnkleRightX";
+            names.Add(temp);
+            temp = "AnkleRightY";
+            names.Add(temp);
+            temp = "AnkleRightZ";
+            names.Add(temp);
+            temp = "AnkleLeftX";
+            names.Add(temp);
+            temp = "AnkleLeftY";
+            names.Add(temp);
+            temp = "AnkleLeftZ";
+            names.Add(temp);
+            temp = "ElbowRightX";
+            names.Add(temp);
+            temp = "ElbowRightY";
+            names.Add(temp);
+            temp = "ElbowRightZ";
+            names.Add(temp);
+            temp = "ElbowLeftX";
+            names.Add(temp);
+            temp = "ElbowLeftY";
+            names.Add(temp);
+            temp = "ElbowLeftZ";
+            names.Add(temp);
+            temp = "HandRightX";
+            names.Add(temp);
+            temp = "HandRightY";
+            names.Add(temp);
+            temp = "HandRightZ";
+            names.Add(temp);
+            temp = "HandLeftX";
+            names.Add(temp);
+            temp = "HandLeftY";
+            names.Add(temp);
+            temp = "HandLeftZ";
+            names.Add(temp);
+            temp = "HandRightTipX";
+            names.Add(temp);
+            temp = "HandRightTipY";
+            names.Add(temp);
+            temp = "HandRightTipZ";
+            names.Add(temp);
+            temp = "HandLeftTipX";
+            names.Add(temp);
+            temp = "HandLeftTipY";
+            names.Add(temp);
+            temp = "HandLeftTipZ";
+            names.Add(temp);
+            temp = "HeadX";
+            names.Add(temp);
+            temp = "HeadY";
+            names.Add(temp);
+            temp = "HeadZ";
+            names.Add(temp);
+            temp = "HipRightX";
+            names.Add(temp);
+            temp = "HipRightY";
+            names.Add(temp);
+            temp = "HipRightZ";
+            names.Add(temp);
+            temp = "HipLeftX";
+            names.Add(temp);
+            temp = "HipLeftY";
+            names.Add(temp);
+            temp = "HipLeftZ";
+            names.Add(temp);
+            temp = "ShoulderRightX";
+            names.Add(temp);
+            temp = "ShoulderRightY";
+            names.Add(temp);
+            temp = "ShoulderRightZ";
+            names.Add(temp);
+            temp = "ShoulderLeftX";
+            names.Add(temp);
+            temp = "ShoulderLeftY";
+            names.Add(temp);
+            temp = "ShoulderLeftZ";
+            names.Add(temp);
+            temp = "SpineMidX";
+            names.Add(temp);
+            temp = "SpineMidY";
+            names.Add(temp);
+            temp = "SpineMidZ";
+            names.Add(temp);
+            temp = "SpineShoulderX";
+            names.Add(temp);
+            temp = "SpineShoulderY";
+            names.Add(temp);
+            temp = "SpineShoulderZ";
+            names.Add(temp);
+           
+
+            myConectorHub.setValuesName(names);
+        }
+
+        public void sendValues()
+        {
+            if(myConectorHub.startedByHub==true)
+            {
+                try
+                {
+                    List<string> values = new List<string>();
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.apa.averageVolume + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.ffpa.smiling + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.AnkleRight].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.AnkleRight].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.AnkleRight].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.AnkleLeft].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.AnkleLeft].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.AnkleLeft].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ElbowRight].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ElbowRight].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ElbowRight].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ElbowLeft].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ElbowLeft].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ElbowLeft].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandRight].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandRight].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandRight].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandLeft].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandLeft].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandLeft].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandTipRight].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandTipRight].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandTipRight].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandTipLeft].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandTipLeft].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HandTipLeft].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.Head].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.Head].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.Head].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HipRight].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HipRight].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HipRight].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HipLeft].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HipLeft].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.HipLeft].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ShoulderRight].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ShoulderRight].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ShoulderRight].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ShoulderLeft].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ShoulderLeft].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.ShoulderLeft].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.SpineMid].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.SpineMid].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.SpineMid].Position.Z + "");
+
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.SpineShoulder].Position.X + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.SpineShoulder].Position.Y + "");
+                    values.Add(rulesAnalyzerFIFO.myJudgementMaker.bfpa.body.Joints[JointType.SpineShoulder].Position.Z + "");
+
+                    myConectorHub.storeFrame(values);
+                }
+                catch
+                {
+
+                }
+                
+
+            }
+
+
+        }
+
+        private void MyConectorHub_stopRecordingEvent(object sender)
+        {
+
+            Dispatcher.Invoke(() =>
+            {
+                freestyleMode.pitchEnd();
+               // freestylepitchEnd();
+            });
+          
+        }
+
+        private void MyConectorHub_startRecordingEvent(object sender)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                mainMenu_FreestyleClicked(null, null);
+            });
+            
+        }
+
+        #endregion
         private void initializeHaptic()
         {
             try
@@ -194,6 +430,7 @@ namespace PresentationTrainer
                     break;
                 case States.volumeCalibration:
                     loadVolumeCalibration();
+                    
                     break;
                 case States.hero:
                   //  loadHeroMode();
@@ -593,17 +830,20 @@ namespace PresentationTrainer
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             if (this.frameReader != null)
             {
                 this.frameReader.FrameArrived += frameReader_FrameArrived;
             }
+            
         }
      
 
         void frameReader_FrameArrived(object sender, InfraredFrameArrivedEventArgs e)
         {
-          //  rulesAnalyzer.AnalyseRules();
-            switch(myState)
+            //  rulesAnalyzer.AnalyseRules();
+           
+            switch (myState)
             {
                 case States.freestyle:
                     rulesAnalyzerFIFO.AnalyseRules();
@@ -631,8 +871,9 @@ namespace PresentationTrainer
                 this.kinectSensor.Close();
                 this.kinectSensor = null;
             }
-          //  audioHandlerControl.close();
-           // bodyFrameHandlerControl.close();
+            //  audioHandlerControl.close();
+            // bodyFrameHandlerControl.close();
+            myConectorHub.close();
             videoHandler.close();
 
         }

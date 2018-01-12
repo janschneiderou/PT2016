@@ -53,11 +53,15 @@ namespace PresentationTrainer
             App app = ((App)Application.Current);
             app.KinectRegion = kinectRegion;
         }
+        public void sendStart()
+        {
+            Button_Click(null, null);
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             FreestyleButton.Content = "Pressed";
             MainWindow.pitchTime = int.Parse(pitchTime.Text);
-            MainWindow.pitch = true;
+            MainWindow.pitch = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

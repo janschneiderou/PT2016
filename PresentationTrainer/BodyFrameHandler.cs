@@ -296,7 +296,7 @@ namespace PresentationTrainer
                                 bodyFramePreAnalysis.body = body.body;
                                 if(MainWindow.myState.Equals(MainWindow.States.hero))
                                 {
-                                    bodyFramePreAnalysis.analyzeHero();
+                                   // bodyFramePreAnalysis.analyzeHero();
                                 }
                                 else 
                                 {

@@ -280,6 +280,11 @@ namespace PresentationTrainer
                 mistakesL.Clear();
             }
             logGoodies();
+            if(parent.tryHub==true)
+            {
+                parent.sendValues();
+            }
+            
         }
 
         #region mistakesLLists

@@ -214,7 +214,7 @@ namespace PresentationTrainer
           //  parent.loadMode();
         }
 
-        private void GoMainMenu1_Click(object sender, RoutedEventArgs e)
+        public void GoMainMenu1_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.myState = MainWindow.States.menu;
             doLoggingStuff();

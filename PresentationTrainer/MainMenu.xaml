@@ -12,7 +12,7 @@
             <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="166,235,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click" Name="FreestyleButton">
                 <Image Source="Images/ic_freestyle.png" />
             </Button>
-            <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="849,235,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click" Visibility="Visible" Name="PitchButton">
+            <Button Background="LightBlue" FontSize="28" HorizontalAlignment="Left" Margin="849,235,0,0" VerticalAlignment="Top" Width="265" Height="180" Click="Button_Click_1" Visibility="Visible" Name="PitchButton">
                 <Image Source="Images/ic_freestyle.png" />
             </Button>
 
